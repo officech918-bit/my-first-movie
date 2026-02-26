@@ -1,0 +1,46 @@
+===Database myfirstm_live
+
+== Table structure for table web_users
+
+|------
+|Column|Type|Null|Default
+|------
+|//**uid**//|bigint(255)|No|
+|region|bigint(255)|No|0
+|first_name|varchar(255)|No|
+|last_name|varchar(255)|No|
+|email|varchar(255)|No|
+|contact|varchar(255)|No|
+|gender|varchar(255)|No|
+|salt|varchar(255)|No|
+|hash_code|varchar(255)|No|
+|avatar|varchar(255)|No|
+|avatar_thumb|varchar(255)|No|
+|avatar_path|varchar(255)|No|
+|last_update_on|datetime|No|
+|tnc_agreed|tinyint(1)|No|
+|company|varchar(255)|No|
+|billing_address|varchar(500)|No|
+|address|varchar(500)|No|
+|city|varchar(255)|No|
+|state|varchar(255)|No|
+|zip|varchar(55)|No|
+|country|varchar(255)|No|
+|about_me|varchar(5000)|No|
+|newsletter|tinyint(1)|No|
+|ip|varchar(255)|No|
+|create_date|datetime|No|
+|status|tinyint(1)|No|
+|admin_approved|tinyint(1)|No|
+|activation_code|varchar(255)|No|
+|activation_time|datetime|No|
+|activation_expire_time|datetime|No|
+|activation_link|varchar(255)|No|
+|activation_status|tinyint(1)|No|
+|reset_req_id|varchar(255)|No|
+|reset_time|datetime|No|
+|reset_expire_time|datetime|No|
+|last_login|datetime|No|
+== Dumping data for table web_users
+
+|622|0|test|user|sdfgsdfg@gmail.com|1234567890|Male|02481e191855|506b04700e47d7d609a456c308505b88a8f4beb61e23a067e62b2d024c776d349ef0e217| | | |0000-00-00 00:00:00|1| | | | | | | | |0|::1|2026-01-27 16:48:05|1|0| |0000-00-00 00:00:00|0000-00-00 00:00:00| |0| |0000-00-00 00:00:00|0000-00-00 00:00:00|0000-00-00 00:00:00

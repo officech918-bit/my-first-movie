@@ -1,0 +1,28 @@
+
+
+
+section#lby-content > #lby-demo ul { list-style: none !important; float: left; padding:0px !important; }
+section#lby-content > #lby-demo ul#lby-radio-demo { float: left; padding:0px; }
+section#lby-content > #lby-demo ul li { list-style: none !important; margin: 2px 0 2px 0; text-align: left; }
+section#lby-content > #lby-demo ul li:last-child { margin-top: 0; }
+section#lby-content > #lby-demo ul li.header { text-align: left; opacity: 0.5; margin-bottom: 10px; }
+section#lby-content > #lby-demo ul li.header:not(:first-child) { margin-top: 15px; }
+
+
+
+input.to-labelauty-icon + label { display: inline-block; margin-right: 6px; }
+input.to-labelauty-icon + label:last-child { margin-right: 0; }
+
+input.labelauty + label { font-size: 14px; }
+
+input.labelauty + label > span.labelauty-unchecked-image
+{
+	
+	background-image: url(images/input-unchecked.png);
+}
+input.labelauty + label > span.labelauty-checked-image
+{
+	background-image: url(images/input-checked.png);
+}
+
+

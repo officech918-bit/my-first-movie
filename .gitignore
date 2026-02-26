@@ -1,0 +1,43 @@
+# Git Ignore for PHP/Web Project
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Composer dependencies
+/vendor/
+
+# Node.js dependencies (if you use npm/yarn for frontend assets)
+/node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# IDE and OS specific files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Docker-related files (if any are generated outside of the build context)
+# The Dockerfile itself should generally be committed.
+# .dockerignore is for files *inside* the build context, not for Git.
+# If you have local Docker volumes or build artifacts you don't want to commit:
+# docker-compose.override.yml # if it contains sensitive local configs
+# *.swp # Vim swap files
+# *.swo # Vim swap files
+
+# Compiled assets (if generated and not meant to be committed)
+# For example, if you compile CSS/JS from source files
+# /public/build/
+# /web/assets/

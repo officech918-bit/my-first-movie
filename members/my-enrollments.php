@@ -1,0 +1,703 @@
+<?php declare(strict_types=1);
+
+/**
+ * @author  Aditya chauhan
+ * @license  
+ * @version  1.0.0
+ * @since    1.0.0
+ */
+
+require_once __DIR__ . '/inc/requires.php';
+
+if (!$user->check_session() || !$user->isActive()) {
+    header('Location: index.php');
+    exit();
+}
+
+$sitename = $user->get_sitename();
+$sub_location = $user->get_sub_location();
+$admin_location = $user->get_admin_location();
+
+$from_email = $user->get_from_email();
+$to_email = $user->get_to_email();
+$company_name = $user->get_company_name();
+
+$path = "";
+$direct_path = "";
+if ($sub_location != "") {
+    $path = $sitename . '/' . $sub_location . '/';
+    $direct_path = $_SERVER['DOCUMENT_ROOT'] . '/' . $sub_location . '/';
+} else {
+    $path = $sitename . '/';
+    $direct_path = $_SERVER['DOCUMENT_ROOT'] . '/';
+}
+
+// Fetch all enrollments for the user once
+$stmt = $database->db->prepare("SELECT * FROM enrollments WHERE uid = ?");
+$stmt->execute([$_SESSION['uid']]);
+$enrollments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+?>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Head BEGIN -->
+<head>
+<meta charset="utf-8">
+<title>Current Enrollments | <?php echo e($company_name); ?></title>
+<link rel="shortcut icon" href="favicon.ico">
+
+<!-- Fonts START -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+<!-- Fonts END -->
+
+<!-- Global styles START -->
+<link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Global styles END -->
+
+<!-- Page level plugin styles START -->
+<link href="assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+<!-- Page level plugin styles END -->
+
+<!-- Theme styles START -->
+<link href="assets/global/css/components.css" rel="stylesheet">
+<link href="assets/frontend/layout/css/style.css" rel="stylesheet">
+<link href="assets/frontend/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+<link href="assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
+<link href="assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+<link href="assets/frontend/layout/css/custom.css" rel="stylesheet">
+<!-- Theme styles END -->
+
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link href="assets/global/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css"/>
+<!-- END PAGE LEVEL STYLES -->
+
+<!-- validation -->
+<link href="assets/frontend/layout/css/validationEngine.jquery.css" rel="stylesheet">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<link rel="stylesheet" href="https://www.myfirstmovie.in/assets/frontend/layout/css/skyform/sky-forms.css" />
+<link rel="stylesheet" href="https://www.myfirstmovie.in/assets/frontend/layout/css/skyform/sky-forms-orange.css" />
+<link rel="icon" href="<?= $path ?>favicon.png" type="image/png" />
+<link rel="shortcut icon" href="<?= $path ?>favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="<?= $path ?>favicon.png">
+<link rel="apple-touch-icon" sizes="76x76" href="<?= $path ?>favicon.png">
+<link rel="apple-touch-icon" sizes="120x120" href="<?= $path ?>favicon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="<?= $path ?>favicon.png">
+<link rel="stylesheet" href="source/jquery-labelauty.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="source/lby-main.css" type="text/css" media="screen" charset="utf-8" />
+<?php include('inc/pre-body.php'); ?>
+<!-- Body BEGIN -->
+
+<!-- validation -->
+<link href="assets/frontend/layout/css/validationEngine.jquery.css" rel="stylesheet">
+<style>
+@-webkit-keyframes myanimation {
+ from {
+ left: 0%;
+}
+to {
+	left: 50%;
+}
+}
+
+.checkout-wrap {
+	color: #444;
+	font-family: 'PT Sans Caption', sans-serif;
+	width: 100%;
+	min-height: 50px;
+	overflow: hidden;
+}
+ul.checkout-bar {
+	margin: 0 20px;
+}
+ul.checkout-bar li {
+	color: #ccc;
+	display: block;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 14px 20px 14px 80px;
+	position: relative;
+}
+ul.checkout-bar li:before {
+	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	background: #ddd;
+	border: 2px solid #FFF;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 700;
+	left: 20px;
+	line-height: 37px;
+	height: 35px;
+	position: absolute;
+	text-align: center;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+	top: 4px;
+	width: 35px;
+	z-index: 999;
+}
+ul.checkout-bar li.active {
+	color: #8bc53f;
+	font-weight: bold;
+}
+ul.checkout-bar li.active:before {
+	background: #8bc53f;
+	z-index: 99999;
+}
+ul.checkout-bar li.visited {
+	background: #ECECEC;
+	color: #57aed1;
+	z-index: 99999;
+}
+ul.checkout-bar li.visited:before {
+	background: #57aed1;
+	z-index: 99999;
+}
+ul.checkout-bar li:nth-child(1):before {
+	content: "1";
+}
+ul.checkout-bar li:nth-child(2):before {
+	content: "2";
+}
+ul.checkout-bar li:nth-child(3):before {
+	content: "3";
+}
+ul.checkout-bar li:nth-child(4):before {
+	content: "4";
+}
+ul.checkout-bar li:nth-child(5):before {
+	content: "5";
+}
+ul.checkout-bar li:nth-child(6):before {
+	content: "6";
+}
+ul.checkout-bar a {
+	color: #57aed1;
+	font-size: 16px;
+	font-weight: 600;
+	text-decoration: none;
+}
+ @media all and (min-width: 800px) {
+.checkout-bar li.active:after {
+	-webkit-animation: myanimation 3s 0;
+	background-size: 35px 35px;
+	background-color: #8bc53f;
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	content: "";
+	height: 15px;
+	width: 100%;
+	left: 50%;
+	position: absolute;
+	top: -50px;
+	z-index: 0;
+}
+.checkout-wrap {
+	margin: 20px auto 40px auto;
+}
+ul.checkout-bar {
+	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	background-size: 35px 35px;
+	background-color: #EcEcEc;
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+	border-radius: 15px;
+	height: 15px;
+	margin: 0 auto;
+	padding: 0;
+	position: absolute;
+	width: 94%;
+}
+ul.checkout-bar:before {
+	background-size: 35px 35px;
+	background-color: #57aed1;
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	content: " ";
+	height: 15px;
+	left: 0;
+	position: absolute;
+	width: 50%;
+}
+ul.checkout-bar li {
+	display: inline-block;
+	margin: 50px 0 0;
+	padding: 0;
+	text-align: center;
+	width: 40%;
+}
+ul.checkout-bar li:before {
+	height: 45px;
+	left: 50%;
+	line-height: 45px;
+	position: absolute;
+	top: -65px;
+	width: 45px;
+	z-index: 99;
+}
+ul.checkout-bar li.visited {
+	background: none;
+}
+ul.checkout-bar li.visited:after {
+	background-size: 35px 35px;
+	background-color: #57aed1;
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+	content: "";
+	height: 15px;
+	left: 50%;
+	position: absolute;
+	top: -50px;
+	width: 100%;
+	z-index: 99;
+}
+}
+
+.fee-display {
+  background-color: teal;
+    padding: 10px;
+    padding-left: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+.enrol-table table,th,td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+}
+
+.enrol-table th,td {
+width: 17%;
+}
+
+.enrol-table td:nth-child(6){
+white-space: nowrap;
+}
+
+.enrol-table-respo, .responzo {
+  display: none;
+}
+
+@media only screen and (max-width: 1009px) {
+    /* Removed conflicting display rules for responsive tables */
+    
+    .enrol-table-respo td:nth-child(1){
+      text-align: left;
+      font-weight: bold;
+      width: 7%;
+    }
+    
+    .enrol-table-respo td:nth-child(2) {
+      text-align: left;
+    }
+    
+}
+
+.reqspace {
+  height:20px;
+  width: 100%;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.uploaded-file {
+    width: 24px;
+    float: center;
+    cursor: pointer;
+}
+
+.expl {
+  background-color: #51b1f5; 
+  color: white;
+  padding: 8px;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+</style>
+
+
+
+</head>
+<!-- Head END -->
+
+<body class="ecommerce">
+<!-- BEGIN TOP BAR -->
+<?php include('inc/header.php'); ?>
+<!-- Header END --> <!-- Header END -->
+
+<div class="main">
+  <div class="page-head">
+    <div class="container"> 
+      <!-- BEGIN PAGE TITLE -->
+      <div class="page-title">
+        <h1>My Enrollment</h1>
+      </div>
+      <ul class="page-breadcrumb breadcrumb pull-right">
+        <li><a href="dashboard.php"><?php echo $company_name ?></a></li>
+        <li class="active">My Enrollment</li>
+      </ul>
+      <!-- END PAGE TITLE --> 
+    </div>
+  </div>
+  <div class="container"> 
+    
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40"> 
+      <!-- BEGIN SIDEBAR -->
+      <div class="sidebar col-md-3 col-sm-3">
+        <?php include('inc/left-menu.php'); ?>
+      </div>
+      <!-- END SIDEBAR --> 
+      
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-9 col-sm-9 user_right_area">
+        <div class="portlet light">
+          <div class="portlet-title tabbable-line">
+            <div class="caption font-green-sharp"> <i class="icon-speech font-green-sharp"></i> <span class="caption-subject bold uppercase"> My Enrollment</span> <span class="caption-helper">apply now...</span> </div>
+            <?php include('inc/top-menu.php'); ?>
+          </div>
+          <?php
+if (!empty($enrollments)) {
+?>
+          <div class="table-responsive">
+            <table class="enrol-table">
+            <tbody>
+              <tr>
+                <th>
+                  Sr. No.
+                </th>
+                <th>
+                  Category Applied
+                </th>
+                <th>
+                  Explanation
+                </th>
+                <th>
+                  Number of Files Uploaded
+                </th>
+                <th>
+                  Date & Time of Enrollment
+                </th>
+                <th>
+                  Fee Allotted
+                </th>
+                <th>
+                  Payment Status
+                </th>
+				<th>
+                  Action
+                </th>
+              </tr>
+              <?php 
+              $sr_no = 1;
+              foreach($enrollments as $enrol_result) {
+              ?>
+              <tr>
+                <td>
+                  <?php echo $sr_no++; ?>
+                </td>
+                <td>
+                  <?php echo e($enrol_result['title']); ?>
+                </td>
+                <td>
+                  <a href="explanation.php?id=<?php echo (int)$enrol_result['id']; ?>" target="_blank" class="expl">View your Explanation</a>
+                </td>
+                <td>
+                  <?php echo (int)$enrol_result['no_of_files']; ?><a href="uploaded_files.php?id=<?php echo (int)$enrol_result['id']; ?>" target="_blank"><img class="uploaded-file" src="documenten.png" alt="Uploaded Files"></a>
+                </td>
+                <td>
+                  <?php echo '<span class="nowrap">'.date('dS F , Y', strtotime($enrol_result['dt'])).'</span>'."\n".'<span class="nowrap">'.date('h:i:s A', strtotime($enrol_result['dt'])).'</span>'; ?>
+                </td>
+                <td>
+                  <?php echo "Rs. ".e($enrol_result['fee'])." /-"; ?>
+                </td>
+                <td>
+                  <?php
+                  $enrollment_status = $enrol_result['status'];
+                  if ($enrollment_status === 'completed') {
+                      echo "Payment Successful<br>You are enrolled in this.";
+                  } elseif ($enrollment_status === 'failed') {
+                      echo "Payment Failed.";
+                  } else { // status is 'pending'
+                      $stmt = $database->db->prepare("SELECT MAX(id) as max_id FROM ccav_resp WHERE uid = ? AND title = ?");
+                      $stmt->execute([$_SESSION['uid'], $enrol_result['title']]);
+                      $res1 = $stmt->fetch(PDO::FETCH_ASSOC);
+                      $catch1 = $res1['max_id'] ?? null;
+                      $stmt->closeCursor();
+
+                      if($catch1 === null){
+                          echo "Payment Remaining\n<a href='enrollment-step2.php?id=".(int)$enrol_result['id']."'><img src='Green-animated-arrow-right.gif' alt='Go to Payment Section' width='40px' style='cursor:pointer;white-space:nowrap;'>\n\n<span style='cursor:pointer;white-space:nowrap;'>Go to Payment Section</span></a>";
+                      } else {
+                          $stmt = $database->db->prepare("SELECT act FROM ccav_resp WHERE id = ?");
+                          $stmt->execute([$catch1]);
+                          $res2 = $stmt->fetch(PDO::FETCH_ASSOC);
+                          $catch2 = $res2['act'] ?? null;
+                          $stmt->closeCursor();
+
+                          if($catch2 == 1){
+                              echo "Payment Successful";
+                          } else {
+                              echo "Payment Failed\n<a href='enrollment-step2.php?id=".(int)$enrol_result['id']."'><img src='Retry-512.png' alt='Retry Payment' width='40px' style='cursor:pointer;white-space:nowrap;'>\n<span style='cursor:pointer;white-space:nowrap;'>Retry</span></a>";
+                          }
+                      }
+                  }
+                  ?>
+                </td>
+				<td>
+				  <?php
+				  $enrollment_status = $enrol_result['status'];
+				  if ($enrollment_status === 'completed'):
+				  ?>
+                  <a href="current-enrollments.php?id=<?php echo (int)$enrol_result['id']; ?>" target="_blank" class="expl">Edit</a>
+                  <form action="delete-enrollment-completed.php" method="post" style="display:inline;" id="delete-form-<?php echo (int)$enrol_result['id']; ?>">
+                      <input type="hidden" name="id" value="<?php echo (int)$enrol_result['id']; ?>">
+                      <input type="hidden" name="csrf_token" value="<?php echo e($_SESSION['csrf_token']); ?>">
+                      <a href="#" class="expl delete-enrollment-btn" style="background-color:red;" data-id="<?php echo (int)$enrol_result['id']; ?>" data-status="completed">Delete (Refund)</a>
+                  </form>
+				  <?php elseif ($enrollment_status === 'failed'): ?>
+                  <form action="delete-enrollment-failed.php" method="post" style="display:inline;" id="delete-form-<?php echo (int)$enrol_result['id']; ?>">
+                      <input type="hidden" name="id" value="<?php echo (int)$enrol_result['id']; ?>">
+                      <input type="hidden" name="csrf_token" value="<?php echo e($_SESSION['csrf_token']); ?>">
+                      <a href="#" class="expl delete-enrollment-btn" style="background-color:red;" data-id="<?php echo (int)$enrol_result['id']; ?>" data-status="failed">Delete</a>
+                  </form>
+				  <?php else: // status is 'pending' ?>
+                  <a href="current-enrollments.php?id=<?php echo (int)$enrol_result['id']; ?>" target="_blank" class="expl">Edit</a>
+                  <form action="delete-enrollment.php" method="post" style="display:inline;" id="delete-form-<?php echo (int)$enrol_result['id']; ?>">
+                      <input type="hidden" name="id" value="<?php echo (int)$enrol_result['id']; ?>">
+                      <input type="hidden" name="csrf_token" value="<?php echo e($_SESSION['csrf_token']); ?>">
+                      <a href="#" class="expl delete-enrollment-btn" style="background-color:red;" data-id="<?php echo (int)$enrol_result['id']; ?>" data-status="pending">Delete</a>
+                  </form>
+				  <?php endif; ?>
+                </td>
+              </tr>
+              <?php }
+                    }else{
+               ?>
+               <h3 class="msgz">You have not enrolled in any category yet!</h3>
+               <?php
+               }
+               ?>
+            </tbody>
+          </table>
+          </div>
+          <script type="text/javascript" nonce="<?= $nonce ?>">
+            document.addEventListener('DOMContentLoaded', function() {
+              document.querySelectorAll('.delete-enrollment-btn').forEach(button => {
+                button.addEventListener('click', function(event) {
+                  event.preventDefault(); // Prevent default link behavior
+                  const id = this.dataset.id;
+                  const status = this.dataset.status;
+                  let confirmationMessage = "Are you sure you want to delete this enrollment? This action cannot be undone.";
+
+                  if (status === 'completed') {
+                    confirmationMessage = "Are you sure you want to cancel this enrollment and initiate a refund? This action will attempt to refund the amount via CCAvenue.";
+                  }
+
+                  if (confirm(confirmationMessage)) {
+                    document.getElementById('delete-form-' + id).submit();
+                  }
+                });
+              });
+            });
+          </script>
+          
+
+            
+            
+            
+
+
+          
+        </div>
+      </div>
+      <!-- END CONTENT --> 
+    </div>
+    <!-- END SIDEBAR & CONTENT --> 
+  </div>
+</div>
+
+<!-- BEGIN FOOTER --> 
+<!-- BEGIN FOOTER -->
+<?php include('inc/footer.php'); ?>
+<!-- END FOOTER --> <!-- END FOOTER --> 
+
+<!-- Load javascripts at bottom, this will reduce page load time --> 
+<!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) --> 
+<!--[if lt IE 9]>
+    <script src="assets/global/plugins/respond.min.js"></script>  
+    <![endif]--> 
+<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script> 
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip --> 
+<script src="assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script> 
+<script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script> 
+<!-- END CORE PLUGINS --> 
+
+<!-- validation --> 
+<script src="assets/frontend/layout/scripts/jquery.validationEngine-en.js" type="text/javascript"></script> 
+<script src="assets/frontend/layout/scripts/jquery.validationEngine.js" type="text/javascript"></script> 
+<script nonce="<?= $nonce ?>">
+		jQuery(document).ready(function(){
+			// binds form submission and fields to the validation engine
+			jQuery("#enrollment").validationEngine();
+		});
+	</script> 
+
+<!--<script type="text/javascript" src="jquery-1.4.min.js"></script> --> 
+<script type="text/javascript" src="jquery.sheepItPlugin.js"></script> 
+<script type="text/javascript" nonce="<?= $nonce ?>">
+	$(document).ready(function() {
+    if ($('#sheepItForm').length) { // Check if the element exists
+        var sheepItForm = $('#sheepItForm').sheepIt({
+            separator: '',
+            allowRemoveLast: true,
+            allowRemoveCurrent: true,
+            allowRemoveAll: true,
+            allowAdd: true,
+            allowAddN: true,
+            maxFormsCount: 10,
+            minFormsCount: 0,
+            iniFormsCount: 2
+        });
+    }
+});
+			
+</script>
+<style type="text/css" nonce="<?= $nonce ?>">
+
+a {
+    text-decoration:none;
+    color:#00F;
+    cursor:pointer;
+}
+
+#sheepItForm_controls div, #sheepItForm_controls div input {
+    float:left;    
+    margin-right: 10px;
+}
+
+</style>
+
+<!-- BEGIN PAGE LEVEL PLUGINS --> 
+<!--<script type="text/javascript" src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>  --> 
+
+<script type="text/javascript" src="assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script> 
+<script type="text/javascript" src="assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script> 
+<script type="text/javascript" src="assets/global/plugins/ckeditor/ckeditor.js"></script> 
+
+<!-- END PAGE LEVEL PLUGINS --> 
+
+<!-- BEGIN PAGE LEVEL PLUGINS --> 
+
+<!-- END PAGE LEVEL PLUGINS--> 
+
+<!-- BEGIN PAGE LEVEL STYLES --> 
+<script src="assets/global/scripts/metronic.js" type="text/javascript"></script> 
+<script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script> 
+<script src="assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script> 
+<script src="assets/admin/layout/scripts/demo.js" type="text/javascript"></script> 
+<!--<script src="assets/admin/pages/scripts/form-validation.js"></script>  --> 
+<!-- END PAGE LEVEL STYLES --> 
+
+<!--<script type="text/javascript" src="source/jquery-latest.js"></script>--> 
+<script type="text/javascript" src="source/jquery-labelauty.js"></script> 
+<script type="text/javascript" nonce="<?= $nonce ?>">
+		$(document).ready(function(){
+			$(".to-labelauty").labelauty({ minimum_width: "155px" });
+			$(".to-labelauty-icon").labelauty({ label: false });
+		});
+	</script> 
+<script nonce="<?= $nonce ?>">
+jQuery(document).ready(function() {   
+   // initiate layout and plugins
+   //Metronic.init(); // init metronic core components
+//Layout.init(); // init current layout
+//QuickSidebar.init(); // init quick sidebar
+//Demo.init(); // init demo features
+   //FormValidation.init(); //
+   //FormFileUpload.init();
+});
+</script>
+<script type="text/javascript" nonce="<?= $nonce ?>">
+$(document).ready(function(){
+$(".ecategory").click(function(){
+var myRadio = $('input[name=category]');
+var checkedValue = myRadio.filter(':checked').val();
+$.ajax({
+           type: "POST",
+            url: "getdata.php",
+            data: "checkedValue="  + checkedValue,
+            success:function(data){
+            //return data;
+            $("#damount").html(data); 
+            $("#hfee").val(data);
+            } 
+            });
+});
+
+$("#btnc").click(function(){
+window.location.href = "<?= $path ?>dashboard.php";
+});
+
+});
+
+function delete_enrollment(){
+	var warning = window.confirm('Are you sure you want to delete the enrollment ?');
+	if(warning==true){
+		window.location.href="<?= $path ?>delete-enrollment.php?zfd=<?php echo e(decoct((int)($enrol_result1['id'] ?? 0) + 2390)); ?>";
+	}else{
+		return false;
+	}
+}
+
+function delete_enrollment1(){
+	var warning = window.confirm('Are you sure you want to delete the enrollment ?');
+	if(warning==true){
+		window.location.href="<?= $path ?>delete-enrollment.php?zfd=<?php echo e(decoct((int)($enrol_result['id'] ?? 0) + 2390)); ?>";
+	}else{
+		return false;
+	}
+}
+
+</script>
+
+
+</body>
+<!-- END BODY -->
+</html>
