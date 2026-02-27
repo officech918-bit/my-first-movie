@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /myfirstmovie1/admin/
+RewriteBase /myfirstmovie/admin/
 
 # Disable directory listing
 Options -Indexes
