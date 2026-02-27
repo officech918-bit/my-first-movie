@@ -64,10 +64,15 @@ error_reporting(E_ALL & ~E_DEPRECATED);
 |--------------------------------------------------------------------------
 */
 
-if (
-    empty($_SERVER['HTTPS']) ||
-    $_SERVER['HTTPS'] === 'off'
-) {
+$isHttps = (
+    (!empty($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) !== 'off') ||
+    (isset($_SERVER['SERVER_PORT']) && (string) $_SERVER['SERVER_PORT'] === '443') ||
+    (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && stripos((string) $_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) ||
+    (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower((string) $_SERVER['HTTP_X_FORWARDED_SSL']) === 'on') ||
+    (isset($_SERVER['HTTP_CF_VISITOR']) && stripos((string) $_SERVER['HTTP_CF_VISITOR'], '"scheme":"https"') !== false)
+);
+
+if (!$isHttps) {
     header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], true, 301);
     exit;
 }
