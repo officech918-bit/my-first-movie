@@ -1,0 +1,88 @@
+div#head_div {
+margin-top: 2%;
+}
+div#main_container {
+width: 62%;
+}div#main_container {
+width: 62%;
+}
+.progress-pie-chart {
+margin-left: 34%;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+background-color: #E5E5E5;
+position: relative;
+}
+.container {
+margin-left: 16%;
+width: 200px;
+}
+.progress {
+margin-left: 0%;
+width: 340px;
+/* margin: 2% auto; */
+text-align: center;
+}
+
+ul#progress {
+list-style: none;
+width: 125px;
+margin: 18%;
+padding-top: 0px;
+padding-bottom: 0px;
+/* padding-right: 46px; */
+}
+ul#loadbar {
+list-style: none;
+width: 140px;
+margin: 16%;
+padding-top: 50px;
+padding-bottom: 38px;
+padding-right: 46px;
+}
+div.p_bar_body {
+margin-left: 10%;
+margin-top: 18%;
+}
+.progress-value {
+color: #444;
+margin-left: 120px;
+margin-top: 6px;
+}
+progress {
+width: 290px;
+height: 25px;
+border: 0px none;
+background-color: #E5E5E5;
+border-radius: 10px;
+padding: 4px 5px 5px 5px;
+}
+div#second {
+/* width: 7%; */
+/* height: 744px; */
+margin-left: 19%;
+/* float: right; */
+/* position: absolute; */
+/* top: 0%; */
+/* right: 0%; */
+/* height: 10%; */
+margin-top: 4%;
+}
+.add
+{
+width: 200px;
+height: 410px;
+margin-top: 0px;
+}
+.progress .bar {
+position: relative;
+width: 20px;
+height: 6px;
+top: -33px;
+margin-left: -5px;
+margin-right: -5px;
+border-left: none;
+border-right: none;
+border-radius: 0;
+}

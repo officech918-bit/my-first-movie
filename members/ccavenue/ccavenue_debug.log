@@ -1,0 +1,1724 @@
+[2026-02-18 10:16:48] CCAvenue Debug Info:
+  CCAV_WORKING_KEY: NOT SET
+  CCAV_ACCESS_CODE: NOT SET
+  Merchant ID from POST: 
+----------------------------------------
+
+[2026-02-18 10:17:58] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+----------------------------------------
+
+[2026-02-18 10:18:33] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+----------------------------------------
+
+[2026-02-18 10:19:28] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+----------------------------------------
+
+[2026-02-18 10:20:32] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+  _POST['order_id']: 55
+----------------------------------------
+
+[2026-02-18 10:20:32] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:20:32] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:21:22] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+  _POST['order_id']: 55
+----------------------------------------
+
+[2026-02-18 10:21:22] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:21:22] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:22:18] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+  _POST['order_id']: 55
+----------------------------------------
+
+[2026-02-18 10:22:18] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:22:18] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:23:21] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+  _POST['order_id']: 55
+----------------------------------------
+
+[2026-02-18 10:23:21] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:23:21] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:25:25] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:25:25] Final merchant_data before encryption: merchant_id=137320&
+
+[2026-02-18 10:28:32] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:28:32] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:29:20] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Jalandhar
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:29:20] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Jalandhar&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:32:47] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Kendrapada
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:32:47] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Kendrapada&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:36:21] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Jalandhar
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:36:21] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Jalandhar&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:42:48] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Champhai
+    [billing_state] => Mizoram
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:42:48] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Champhai&billing_state=Mizoram&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:43:19] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Ukhrul
+    [billing_state] => Manipur
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:43:19] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Ukhrul&billing_state=Manipur&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:46:46] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 55
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 55
+    [amount] => 0.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => West Khasi Hills
+    [billing_state] => Meghalaya
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:46:46] Final merchant_data before encryption: merchant_id=137320&order_id=55&amount=0.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=West+Khasi+Hills&billing_state=Meghalaya&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:52:37] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:52:37] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 10:53:41] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Khurda
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 10:53:41] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Khurda&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 11:03:47] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 11:03:47] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 11:05:14] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 11:05:14] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 11:21:22] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://unenvironed-merited-mercedez.ngrok-free.dev/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://unenvironed-merited-mercedez.ngrok-free.dev/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Dimapur
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 11:21:22] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Funenvironed-merited-mercedez.ngrok-free.dev%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Funenvironed-merited-mercedez.ngrok-free.dev%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Dimapur&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 13:17:12] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Jalandhar
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 13:17:12] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Jalandhar&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 14:49:34] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 59
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 59
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => aditya 
+    [billing_address] => mumbai
+    [billing_city] => Jalandhar
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 9819737675
+    [billing_email] => officech918@gmail.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 14:49:34] Final merchant_data before encryption: merchant_id=137320&order_id=59&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=aditya+&billing_email=officech918%40gmail.com&billing_tel=9819737675&billing_address=mumbai&billing_city=Jalandhar&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 14:54:38] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Khurda
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 14:54:38] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Khurda&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-18 15:03:13] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Mohali
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-18 15:03:13] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Mohali&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 05:44:16] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Khurda
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 05:44:16] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Khurda&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:32:56] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 56
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 56
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://192.168.1.164/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://192.168.1.164/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Khurda
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:32:56] Final merchant_data before encryption: merchant_id=137320&order_id=56&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2F192.168.1.164%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2F192.168.1.164%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Khurda&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:49:42] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Wokha
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:49:42] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Wokha&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:50:10] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Khurda
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:50:10] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Khurda&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:50:57] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:50:57] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:52:06] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:52:06] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:54:07] CCAvenue Debug Info:
+  CCAV_WORKING_KEY: A04D90250BA9425B0CB0D7AF5F92B9CA
+  CCAV_ACCESS_CODE: AVBL71EF28AQ31LBQA
+  CCAV_MERCHANT_ID (from _ENV): 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+  _POST['amount']: 15.00
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Lawngtlai 
+    [billing_state] => Mizoram
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:54:07] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Lawngtlai+&billing_state=Mizoram&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 06:57:11] CCAvenue Debug Info:
+  Raw $_ENV['CCAV_WORKING_KEY']: A04D90250BA9425B0CB0D7AF5F92B9CA
+  Raw $_ENV['CCAV_ACCESS_CODE']: AVBL71EF28AQ31LBQA
+  Raw $_ENV['CCAV_MERCHANT_ID']: 137320
+  $working_key (after assignment): A04D90250BA9425B0CB0D7AF5F92B9CA
+  $access_code (after assignment): AVBL71EF28AQ31LBQA
+  $merchant_id_env (after assignment): 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+  _POST['amount']: 15.00
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Champhai
+    [billing_state] => Mizoram
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 06:57:11] DEBUG: Adding merchant_id to merchant_data from $merchant_id_env: 137320
+[2026-02-19 06:57:11] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Champhai&billing_state=Mizoram&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 07:10:38] CCAvenue Debug Info:
+  Raw $_ENV['CCAV_WORKING_KEY']: A04D90250BA9425B0CB0D7AF5F92B9CA
+  Raw $_ENV['CCAV_ACCESS_CODE']: AVBL71EF28AQ31LBQA
+  Raw $_ENV['CCAV_MERCHANT_ID']: 137320
+  $working_key (after assignment): A04D90250BA9425B0CB0D7AF5F92B9CA
+  $access_code (after assignment): AVBL71EF28AQ31LBQA
+  $merchant_id_env (after assignment): 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+  _POST['amount']: 15.00
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Mohali
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 07:10:38] DEBUG: Adding merchant_id to merchant_data from $merchant_id_env: 137320
+[2026-02-19 07:10:38] Final merchant_data before encryption: merchant_id=137320&redirect_url=https%3A%2F%2Fwww.myfirstmovie.in%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Fwww.myfirstmovie.in%2Fmembers%2Fccavenue%2FccavResponseHandler.php&order_id=61&amount=15.00&currency=INR&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Mohali&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 07:22:33] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://unenvironed-merited-mercedez.ngrok-free.dev/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://unenvironed-merited-mercedez.ngrok-free.dev/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Mohali
+    [billing_state] => Punjab
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 07:22:33] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Funenvironed-merited-mercedez.ngrok-free.dev%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Funenvironed-merited-mercedez.ngrok-free.dev%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Mohali&billing_state=Punjab&billing_zip=asdf&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 07:40:51] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 07:40:51] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 07:48:19] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 07:48:19] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 07:50:49] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Kendrapada
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 07:50:49] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Kendrapada&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 07:52:24] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Jalandhar
+    [billing_state] => Punjab
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 07:52:24] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Jalandhar&billing_state=Punjab&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 08:02:23] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 08:02:23] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 08:05:49] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 08:05:49] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-19 08:08:22] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 61
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 61
+    [amount] => 15.00
+    [currency] => INR
+    [redirect_url] => https://unenvironed-merited-mercedez.ngrok-free.dev/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://unenvironed-merited-mercedez.ngrok-free.dev/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-19 08:08:22] Final merchant_data before encryption: merchant_id=137320&order_id=61&amount=15.00&currency=INR&redirect_url=https%3A%2F%2Funenvironed-merited-mercedez.ngrok-free.dev%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Funenvironed-merited-mercedez.ngrok-free.dev%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=asdf&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-21 06:25:25] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 70
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 70
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-21 06:25:25] Final merchant_data before encryption: merchant_id=137320&order_id=70&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-21 08:30:41] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 70
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 70
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Mokokchung
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-21 08:30:41] Final merchant_data before encryption: merchant_id=137320&order_id=70&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Mokokchung&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-21 08:53:12] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 70
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 70
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Zunheboto
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-21 08:53:12] Final merchant_data before encryption: merchant_id=137320&order_id=70&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Zunheboto&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-23 08:49:21] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 71
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 71
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Kandhamal (Phulbani)
+    [billing_state] => Odisha
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-23 08:49:21] Final merchant_data before encryption: merchant_id=137320&order_id=71&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Kandhamal+%28Phulbani%29&billing_state=Odisha&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-23 11:17:08] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 71
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 71
+    [amount] => 1010.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Dimapur
+    [billing_state] => Nagaland
+    [billing_zip] => 400067
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-23 11:17:08] Final merchant_data before encryption: merchant_id=137320&order_id=71&amount=1010.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Dimapur&billing_state=Nagaland&billing_zip=400067&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-26 09:04:09] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 77
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 77
+    [amount] => 500000.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-26 09:04:09] Final merchant_data before encryption: merchant_id=137320&order_id=77&amount=500000.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=asdf&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-26 09:08:53] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 78
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 78
+    [amount] => 500000.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Wokha
+    [billing_state] => Nagaland
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-26 09:08:53] Final merchant_data before encryption: merchant_id=137320&order_id=78&amount=500000.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Wokha&billing_state=Nagaland&billing_zip=asdf&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-26 09:09:43] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 79
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 79
+    [amount] => 500000.00
+    [currency] => INR
+    [redirect_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Mamit
+    [billing_state] => Mizoram
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-26 09:09:43] Final merchant_data before encryption: merchant_id=137320&order_id=79&amount=500000.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Mamit&billing_state=Mizoram&billing_zip=asdf&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+
+[2026-02-26 12:57:44] CCAvenue Debug Info:
+  CCAV_WORKING_KEY (from _ENV): Loaded
+  CCAV_ACCESS_CODE (from _ENV): Loaded
+  CCAV_MERCHANT_ID (from _ENV): Loaded: 137320
+  Merchant ID from POST: 
+  _POST['order_id']: 85
+----------------------------------------
+  Full _POST array: Array
+(
+    [merchant_id] => 
+    [order_id] => 85
+    [amount] => 500000.00
+    [currency] => INR
+    [redirect_url] => https://localhost/myfirstmovie3/members/ccavenue/ccavResponseHandler.php
+    [cancel_url] => https://localhost/myfirstmovie3/members/ccavenue/ccavResponseHandler.php
+    [language] => EN
+    [billing_name] => Aditya  chauhan
+    [billing_address] => mumbai
+    [billing_city] => Keonjhar
+    [billing_state] => Odisha
+    [billing_zip] => asdf
+    [billing_country] => India
+    [billing_tel] => 1234567890
+    [billing_email] => dharati@aaravinfotech.com
+    [delivery_name] => 
+    [delivery_address] => 
+    [delivery_city] => 
+    [delivery_state] => 
+    [delivery_zip] => 
+    [delivery_country] => 
+    [delivery_tel] => 
+    [merchant_param1] => additional Info.
+)
+
+----------------------------------------
+
+[2026-02-26 12:57:44] Final merchant_data before encryption: merchant_id=137320&order_id=85&amount=500000.00&currency=INR&redirect_url=https%3A%2F%2Flocalhost%2Fmyfirstmovie3%2Fmembers%2Fccavenue%2FccavResponseHandler.php&cancel_url=https%3A%2F%2Flocalhost%2Fmyfirstmovie3%2Fmembers%2Fccavenue%2FccavResponseHandler.php&language=EN&billing_name=Aditya++chauhan&billing_email=dharati%40aaravinfotech.com&billing_tel=1234567890&billing_address=mumbai&billing_city=Keonjhar&billing_state=Odisha&billing_zip=asdf&billing_country=India&delivery_name=&delivery_address=&delivery_city=&delivery_state=&delivery_zip=&delivery_country=&delivery_tel=&merchant_param1=additional+Info.&
+

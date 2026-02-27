@@ -1,0 +1,13 @@
+[21-Jul-2017 04:40:50 America/Chicago] PHP Parse error:  syntax error, unexpected 'error_reporting' (T_STRING) in /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php on line 11
+[21-Jul-2017 04:42:46 America/Chicago] PHP Parse error:  syntax error, unexpected 'error_reporting' (T_STRING) in /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php on line 11
+[21-Jul-2017 04:45:28 America/Chicago] PHP Parse error:  syntax error, unexpected 'error_reporting' (T_STRING) in /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php on line 11
+[21-Jul-2017 04:46:31 America/Chicago] PHP Parse error:  syntax error, unexpected 'error_reporting' (T_STRING) in /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php on line 11
+[21-Jul-2017 04:46:57 America/Chicago] PHP Parse error:  syntax error, unexpected 'error_reporting' (T_STRING) in /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php on line 11
+[22-Jul-2017 07:47:19 America/Chicago] PHP Parse error:  syntax error, unexpected 'select' (T_STRING) in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 8
+[22-Jul-2017 07:49:38 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 7
+[22-Jul-2017 07:50:07 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 7
+[22-Jul-2017 07:51:04 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 7
+[22-Jul-2017 08:02:19 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 7
+[22-Jul-2017 08:08:15 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 7
+[22-Jul-2017 08:08:18 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/myfirstmovie/public_html/members/ccavenue/index.php on line 7
+[25-Jul-2017 02:55:24 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php:9) in /home/myfirstmovie/public_html/members/ccavenue/ccavRequestHandler.php on line 10

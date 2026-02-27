@@ -1,0 +1,93 @@
+services:
+  # Web Service
+  - type: web
+    name: myfirstmovie-web
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheck:
+      path: /health.php
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 3
+    envVars:
+      # Database Configuration (Aiven Cloud MySQL)
+      - key: DB_HOST
+        value: mysql-2e207f46-officech918-5233.i.aivencloud.com
+      - key: DB_PORT
+        value: "11827"
+      - key: DB_DATABASE
+        value: defaultdb
+      - key: DB_USERNAME
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
+        
+      # Application Configuration
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: SITENAME
+        sync: false
+        
+      # Email Configuration (Gmail)
+      - key: MAIL_DRIVER
+        value: smtp
+      - key: MAIL_HOST
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: "587"
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_ENCRYPTION
+        value: tls
+      - key: MAIL_FROM_ADDRESS
+        value: no-reply@myfirstmovie.com
+      - key: MAIL_FROM_NAME
+        value: "MyFirstMovie Support"
+        
+      # CCAvenue Payment Gateway
+      - key: CCAV_ACCESS_CODE
+        sync: false
+      - key: CCAV_MERCHANT_ID
+        sync: false
+      - key: CCAV_TRANSACTION_URL
+        value: "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction"
+      - key: CCAV_WORKING_KEY
+        sync: false
+        
+      # API Configuration
+      - key: API_NEWS
+        sync: false
+        
+      # AWS S3 Configuration (Optional)
+      - key: S3_BASE_URL
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_REGION
+        value: ap-south-1
+      - key: AWS_BUCKET
+        sync: false
+        
+      # Security
+      - key: CSRF_TOKEN_SECRET
+        generateValue: true
+      - key: SESSION_ENCRYPTION_KEY
+        generateValue: true
+        
+    # Persistent storage for uploads
+    disk:
+      name: myfirstmovie-uploads
+      mountPath: /var/www/html/uploads
+      sizeGB: 1
+      
+    # Auto-deploy on push
+    autoDeploy: true
