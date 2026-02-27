@@ -51,9 +51,10 @@ class MySQLDB
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
-            // SSL settings for Aiven
-            PDO::MYSQL_ATTR_SSL_CA        => true,
+            // SSL settings for Aiven - disable SSL verification
+            PDO::MYSQL_ATTR_SSL_CA        => false,
             PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+            PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_ID => false,
         ];
 
         try {
