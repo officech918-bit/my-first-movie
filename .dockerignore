@@ -1,0 +1,77 @@
+# Environment variables (these will be set in Render)
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+S3-SETUP.md
+task-definition.json
+deploy-render.md
+
+# Development files
+.php_cs
+.php_cs.cache
+.vscode/
+.idea/
+
+# Logs
+*.log
+error_log
+
+# Cache and temporary files
+cache/
+.php_cs.cache
+tmp/
+temp/
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Composer (dev dependencies)
+vendor/
+
+# Node modules (if any)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Database dumps
+*.sql
+*.sql.gz
+
+# Docker files (to avoid recursive issues)
+docker-compose.yml
+docker-compose.override.yml
+docker/
+
+# Large media files that should be uploaded separately
+uploads/
+videos/
+
+# Test files
+test.php
+cleanup_db.php
+
+# IDE and editor files
+*.swp
+*.swo
+*~
+
+# Windows files
+Thumbs.db
+desktop.ini
