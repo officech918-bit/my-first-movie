@@ -5,15 +5,24 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Autoload dependencies and initialize database connection
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../config/database.php';
-
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
 }
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
@@ -69,6 +78,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
+
 $panelist = new Panelist();
 $is_edit = false;
 $page_title = 'Add New Panelist';
@@ -102,13 +131,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $image_name = basename($_FILES["image"]["name"]);
-        $target_dir = __DIR__ . "/../uploads/panelists/";
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0777, true);
-        }
-        $target_file = $target_dir . $image_name;
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            $panelist->image = $image_name;
+        
+        // Use S3Uploader for environment-based upload
+        try {
+            $s3Path = 'panelists/' . $image_name;
+            $uploadedUrl = $s3Uploader->uploadFile($_FILES["image"]["tmp_name"], $s3Path);
+            
+            // Store the URL returned by S3Uploader
+            $panelist->image = $uploadedUrl;
+            
+        } catch (Exception $e) {
+            $error = 'Upload failed: ' . $e->getMessage();
         }
     }
 
@@ -215,18 +248,7 @@ if (isset($_SESSION['user_type'])) {
                                             <input type="file" name="image" class="form-control">
                                             <?php if ($is_edit && $panelist->image): ?>
                                                 <p class="help-block">Current image:</p>
-                                                <?php
-                                                // Check if it's an S3 URL or local path
-                                                $imagePath = $panelist->image;
-                                                if (strpos($imagePath, 'http') === 0) {
-                                                    // S3 URL or full URL
-                                                    $imageUrl = $imagePath;
-                                                } else {
-                                                    // Local path - construct proper URL
-                                                    $imageUrl = $correct_base_path . "/uploads/panelists/" . $imagePath;
-                                                }
-                                                ?>
-                                                <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="<?php echo htmlspecialchars($panelist->name); ?>" style="max-width: 200px; margin-top: 10px;" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';">
+                                                <img src="<?php echo getImageUrl($panelist->image, $isProduction); ?>" alt="<?php echo htmlspecialchars($panelist->name); ?>" style="max-width: 200px; margin-top: 10px;" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';">
                                             <?php endif; ?>
                                         </div>
                                     </div>

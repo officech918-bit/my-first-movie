@@ -21,6 +21,12 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/classes/S3Uploader.php')) {
+    require_once __DIR__ . '/classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
 // --- Force Error Reporting ---
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -57,6 +63,37 @@ if ($script) {
     }
 }
 $correct_base_path = $basePath;
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, string $uploadPath = ''): string {
+    if (empty($imagePath)) {
+        return 'https://placehold.co/500x375/EFEFEF/AAAAAA&text=No+Image';
+    }
+    
+    if ($GLOBALS['s3Uploader']->isS3Enabled()) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        
+        // Handle different upload paths
+        if (!empty($uploadPath) && strpos($imagePath, $uploadPath) !== 0) {
+            return $GLOBALS['correct_base_path'] . "/" . $uploadPath . "/" . $imagePath;
+        }
+        
+        // Handle BTS images specifically - they're stored in admin/uploads/bts/
+        if (strpos($imagePath, 'bts/') === 0) {
+            return $GLOBALS['correct_base_path'] . "/admin/uploads/" . $imagePath;
+        }
+        
+        return $GLOBALS['correct_base_path'] . "/" . $imagePath; // Convert to relative path
+    }
+}
 
 // --- Data Fetching and Processing ---
 
@@ -130,20 +167,10 @@ if ($stmt) {
     $admin_news_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($admin_news_result) {
         foreach($admin_news_result as $news_item) {
-            // Check if it's an S3 URL or local path
-            $newsImage = $news_item['image'];
-            if (strpos($newsImage, 'http') === 0) {
-                // S3 URL or full URL
-                $imageUrl = $newsImage;
-            } else {
-                // Local path - construct proper URL using correct base path
-                $imageUrl = $correct_base_path . "/uploads/news/" . $newsImage;
-            }
-            
             $all_news[] = [
                 'headline' => $news_item['headline'],
                 'content' => $news_item['content'],
-                'image' => !empty($news_item['image']) ? $imageUrl : 'https://placehold.co/500x375/EFEFEF/AAAAAA&text=No+Image',
+                'image' => getImageUrl($news_item['image']),
                 'url' => 'news-details.php?id=' . $news_item['id'],
                 'is_external' => false
             ];
@@ -353,14 +380,89 @@ $all_news = array_slice($all_news, 0, 8);
                   <div class="entry-image">
                     <a href="<?= !empty($bts['video_url']) ? htmlspecialchars($bts['video_url']) : 'behind-the-scenes.php?id=' . $bts['id'] ?>" <?= !empty($bts['video_url']) ? 'data-lightbox="iframe"' : '' ?> class="">
                       <?php 
-                      // Check if it's an S3 URL or local path
+                      // DEBUG: Show BTS data
+                      echo "<!-- DEBUG BTS DATA: " . print_r($bts, true) . " -->";
+                      
+                      // Use the getImageUrl function for environment-aware URLs
+                      // For BTS images, we need to add the bts/ prefix if it's not already there
                       $btsImage = $bts['screenshot'];
-                      if (strpos($btsImage, 'http') === 0) {
-                          // S3 URL or full URL
-                          $imageUrl = $btsImage;
+                      echo "<!-- DEBUG Original BTS Image: '$btsImage' -->";
+                      
+                      if (!empty($btsImage) && strpos($btsImage, 'bts/') !== 0) {
+                          // Only add bts/ prefix if it doesn't already start with bts/
+                          $btsImage = 'bts/' . $btsImage;
+                          echo "<!-- DEBUG Modified BTS Image: '$btsImage' -->";
+                      }
+                      
+                      $imageUrl = getImageUrl($btsImage);
+                      echo "<!-- DEBUG Final Image URL: '$imageUrl' -->";
+                      echo "<!-- DEBUG S3 Enabled: " . ($s3Uploader && $s3Uploader->isS3Enabled() ? 'YES' : 'NO') . " -->";
+                      echo "<!-- DEBUG Base Path: '$correct_base_path' -->";
+                      
+                      // Check if file exists (local or S3)
+                      if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                          // S3 mode: Check if S3 object exists
+                          $s3Key = str_replace($s3Uploader->getS3BaseUrl() . '/', '', $imageUrl);
+                          echo "<!-- DEBUG S3 Key Check: '$s3Key' -->";
+                          
+                          if (!$s3Uploader->fileExists($s3Key)) {
+                              echo "<!-- DEBUG S3 File Exists: NO -->";
+                              
+                              // Try to find similar S3 files
+                              $s3Prefix = 'bts/';
+                              $s3Files = $s3Uploader->listFiles($s3Prefix);
+                              echo "<!-- DEBUG Available S3 Files: " . print_r($s3Files, true) . " -->";
+                              
+                              // Look for similar files (same type: bts_title_)
+                              $searchBase = pathinfo($bts['screenshot'], PATHINFO_FILENAME);
+                              foreach ($s3Files as $s3File) {
+                                  $fileBase = pathinfo($s3File, PATHINFO_FILENAME);
+                                  if (strpos($fileBase, 'bts_title_') === 0 && strpos($searchBase, 'bts_title_') === 0) {
+                                      echo "<!-- DEBUG Found Similar S3 File: '$s3File' -->";
+                                      $btsImage = 'bts/' . basename($s3File);
+                                      $imageUrl = $s3Uploader->getFileUrl($btsImage);
+                                      echo "<!-- DEBUG Using Similar S3 File: '$imageUrl' -->";
+                                      break;
+                                  }
+                              }
+                          } else {
+                              echo "<!-- DEBUG S3 File Exists: YES -->";
+                          }
                       } else {
-                          // Local path - construct proper URL using correct base path
-                          $imageUrl = $correct_base_path . "/admin/uploads/bts/" . $btsImage;
+                          // Local mode: Check if local file exists
+                          $localPath = __DIR__ . "/admin/uploads/" . $btsImage;
+                          echo "<!-- DEBUG Local Path Check: '$localPath' -->";
+                          echo "<!-- DEBUG File Exists: " . (file_exists($localPath) ? 'YES' : 'NO') . " -->";
+                          
+                          // If file doesn't exist, try to find a similar file
+                          if (!file_exists($localPath)) {
+                              $btsDir = __DIR__ . "/admin/uploads/bts";
+                              if (is_dir($btsDir)) {
+                                  $files = scandir($btsDir);
+                                  echo "<!-- DEBUG Available Local Files: " . print_r(array_diff($files, ['.', '..']), true) . " -->";
+                                  
+                                  foreach ($files as $file) {
+                                      if ($file !== '.' && $file !== '..') {
+                                          // Try to match by removing extension and comparing base names
+                                          $fileBase = pathinfo($file, PATHINFO_FILENAME);
+                                          $searchBase = pathinfo($bts['screenshot'], PATHINFO_FILENAME);
+                                          
+                                          // Check if the base names match (ignoring the random hash part)
+                                          if (strpos($fileBase, 'bts_title_') === 0 && strpos($searchBase, 'bts_title_') === 0) {
+                                              $altPath = $btsDir . '/' . $file;
+                                              echo "<!-- DEBUG Found Similar Local File: '$file' -->";
+                                              echo "<!-- DEBUG Similar File Exists: " . (file_exists($altPath) ? 'YES' : 'NO') . " -->";
+                                              if (file_exists($altPath)) {
+                                                  $btsImage = 'bts/' . $file;
+                                                  $imageUrl = getImageUrl($btsImage);
+                                                  echo "<!-- DEBUG Using Similar Local File: '$imageUrl' -->";
+                                                  break;
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
+                          }
                       }
                       ?>
                       <?= lazy_image($imageUrl, $bts['title'], 'img-responsive', ['style' => 'height: 300px; width: 100%; object-fit: cover;']) ?>
@@ -396,24 +498,7 @@ $all_news = array_slice($all_news, 0, 8);
                     <div class="slide">
                       <div class="testi-image">
                         <a href="#">
-                          <?php 
-                          // Check if it's an S3 URL or local path
-                          $testimonialLogo = $testimonial['logo'];
-                          if (strpos($testimonialLogo, 'http') === 0) {
-                              // S3 URL or full URL
-                              $imageUrl = $testimonialLogo;
-                          } else {
-                              // Local path - check if already includes uploads/testimonials/
-                              if (strpos($testimonialLogo, 'uploads/testimonials/') === 0) {
-                                  // Already includes the path, just prepend base path
-                                  $imageUrl = $correct_base_path . "/" . $testimonialLogo;
-                              } else {
-                                  // Just the filename, prepend full path
-                                  $imageUrl = $correct_base_path . "/uploads/testimonials/" . $testimonialLogo;
-                              }
-                          }
-                          ?>
-                          <?= lazy_image($imageUrl, 'Customer Testimonails') ?>
+                          <img src="<?= getImageUrl($testimonial['logo']) ?>" alt="<?= htmlspecialchars($testimonial['client_name']) ?>" />
                         </a>
                       </div>
                       <div class="testi-content">

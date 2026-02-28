@@ -1,7 +1,22 @@
 <?php
 	date_default_timezone_set('Asia/Kolkata');
-	$date = date("Y-m-d H:i:s", time());
-	
+
+	// Load environment variables
+	if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+		require_once __DIR__ . '/../vendor/autoload.php';
+		if (class_exists('Dotenv\Dotenv')) {
+			$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+			$dotenv->load();
+		}
+	}
+
+	// Load S3Uploader for environment detection
+	if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+		require_once __DIR__ . '/../classes/S3Uploader.php';
+		$s3Uploader = new S3Uploader();
+		$isProduction = $s3Uploader->isS3Enabled();
+	}
+
 	//get class files
 	include('inc/requires.php');
 	include('classes/class.admin.php');
@@ -42,6 +57,26 @@
 		$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 	}
 	$csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 
  	
  	$sitename = $user->get_sitename();

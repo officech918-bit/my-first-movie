@@ -16,3 +16,718 @@
 [27-Feb-2025 13:29:59 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/myfirstmovie/public_html/index.php:8) in /home/myfirstmovie/public_html/index.php on line 9
 [27-Feb-2025 13:29:59 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/myfirstmovie/public_html/index.php:8) in /home/myfirstmovie/public_html/index.php on line 9
 [27-Feb-2025 18:59:59 Asia/Kolkata] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/myfirstmovie/public_html/classes/database.class.php on line 36
+[28-Feb-2026 06:36:48 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:37:00 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:39:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:39:25 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:39:31 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:39:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:43:50 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:44:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:44:12 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:45:11 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:08 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:32 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:38 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:38 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:47 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:46:58 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:47:04 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:54:35 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:54:40 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 06:54:49 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:19:38 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:19:49 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:39 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:49 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:28:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:58 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:28:59 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:29:00 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:29:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:29:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:29:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:29:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:29:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:29:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:30:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:30:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:30:08 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:30:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:31:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:31:01 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:31:01 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:31:01 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:31:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\categories.php:15
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\categories.php on line 15
+[28-Feb-2026 07:31:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:31:05 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:31:07 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:31:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:32:04 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-categories.php on line 11
+[28-Feb-2026 07:32:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(70): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:33:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(70): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:33:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(70): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:09 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:34:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function connection() on null in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php:1653
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1619): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#1 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1425): Illuminate\Database\Eloquent\Model->getConnection()
+#2 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1342): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#3 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1378): Illuminate\Database\Eloquent\Model->newModelQuery()
+#4 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(1331): Illuminate\Database\Eloquent\Model->newQueryWithoutScopes()
+#5 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2132): Illuminate\Database\Eloquent\Model->newQuery()
+#6 C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php(2144): Illuminate\Database\Eloquent\Model->__call('orderBy', Array)
+#7 C:\xampp\htdocs\myfirstmovie\admin\all-categories.php(71): Illuminate\Database\Eloquent\Model::__callStatic('orderBy', Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\vendor\illuminate\database\Eloquent\Model.php on line 1653
+[28-Feb-2026 07:35:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:42:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:42:28 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:42:41 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:42:48 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:42:54 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:17 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:31 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:33 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:37 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:54 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:43:54 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:50:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:53:07 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 07:53:07 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 07:53:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "admin" not found in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:53:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "admin" not found in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:53:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "admin" not found in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:54:33 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:54:33 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:54:45 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:54:45 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:03 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:03 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:04 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:04 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:05 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:57:28 Europe/Berlin] PHP Warning:  Undefined variable $sitename in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 67
+[28-Feb-2026 07:57:28 Europe/Berlin] PHP Warning:  Undefined variable $doc_root in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:58:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "admin" not found in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 07:58:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "admin" not found in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php:68
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-bts.php on line 68
+[28-Feb-2026 08:00:53 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:01:11 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:01:12 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:01:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:01:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:01:47 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:05:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:06:56 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:06:56 Europe/Berlin] PHP Warning:  Undefined variable $admin_path in C:\xampp\htdocs\myfirstmovie\admin\web-users.php on line 61
+[28-Feb-2026 08:06:58 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:07:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:07:01 Europe/Berlin] PHP Warning:  Undefined variable $admin_path in C:\xampp\htdocs\myfirstmovie\admin\web-users.php on line 61
+[28-Feb-2026 08:07:42 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:07:49 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:08:09 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:08:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:08:54 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:10:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:10:22 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "else" in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 164
+[28-Feb-2026 08:10:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:10:40 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:10:45 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:12:38 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:13:34 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:14:36 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:18:40 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:18:40 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:18:42 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:18:45 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:19:51 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:19:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:19:59 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:20:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:22:36 Europe/Berlin] PHP Fatal error:  Cannot redeclare delete_directory() (previously declared in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php:51) in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 51
+[28-Feb-2026 08:23:58 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 08:24:11 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:39 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:39 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:47 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:47 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:53 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:56 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:24:59 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 08:25:04 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:25:44 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:25:56 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 08:26:11 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:26:16 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:26:17 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:28:15 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:31:04 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:31:04 Europe/Berlin] PHP Warning:  Undefined variable $admin_path in C:\xampp\htdocs\myfirstmovie\admin\web-users.php on line 61
+[28-Feb-2026 08:34:15 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:34:15 Europe/Berlin] Error checking panelists table: A facade root has not been set.
+[28-Feb-2026 08:37:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:37:15 Europe/Berlin] Error checking panelists table: A facade root has not been set.
+[28-Feb-2026 08:37:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:37:22 Europe/Berlin] Error checking panelists table: A facade root has not been set.
+[28-Feb-2026 08:37:22 Europe/Berlin] Panelist saved with ID: 7
+[28-Feb-2026 08:37:22 Europe/Berlin] Error checking last inserted ID: A facade root has not been set.
+[28-Feb-2026 08:37:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:37:25 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:37:25 Europe/Berlin] Error checking panelists table: A facade root has not been set.
+[28-Feb-2026 08:37:25 Europe/Berlin] Editing panelist with ID: 7
+[28-Feb-2026 08:41:11 Europe/Berlin] PHP Warning:  Undefined variable $newsItems in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:41:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function isEmpty() on null in C:\xampp\htdocs\myfirstmovie\admin\all-news.php:189
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:41:21 Europe/Berlin] PHP Warning:  Undefined variable $newsItems in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:41:21 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function isEmpty() on null in C:\xampp\htdocs\myfirstmovie\admin\all-news.php:189
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:41:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:41:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:41:31 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:41:31 Europe/Berlin] PHP Warning:  Undefined variable $newsItems in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:41:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function isEmpty() on null in C:\xampp\htdocs\myfirstmovie\admin\all-news.php:189
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:42:18 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:42:18 Europe/Berlin] PHP Warning:  Undefined variable $newsItems in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:42:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function isEmpty() on null in C:\xampp\htdocs\myfirstmovie\admin\all-news.php:189
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\all-news.php on line 189
+[28-Feb-2026 08:45:48 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:46:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:46:11 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:46:11 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:46:15 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:46:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:47:21 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:49:47 Europe/Berlin] PHP Warning:  Undefined array key "user_type" in C:\xampp\htdocs\myfirstmovie\admin\all-core-team.php on line 87
+[28-Feb-2026 08:49:47 Europe/Berlin] PHP Warning:  Undefined array key "user_type" in C:\xampp\htdocs\myfirstmovie\admin\all-core-team.php on line 90
+[28-Feb-2026 08:49:47 Europe/Berlin] PHP Warning:  include(inc/left-menu-regular.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\myfirstmovie\admin\all-core-team.php on line 123
+[28-Feb-2026 08:49:47 Europe/Berlin] PHP Warning:  include(): Failed opening 'inc/left-menu-regular.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\myfirstmovie\admin\all-core-team.php on line 123
+[28-Feb-2026 08:50:12 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:51:42 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:51:48 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:51:48 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:51:51 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:51:51 Europe/Berlin] Delete Core Team - ID from GET: 9
+[28-Feb-2026 08:51:51 Europe/Berlin] Delete Core Team - ID from POST: not set
+[28-Feb-2026 08:51:51 Europe/Berlin] Delete Core Team - Final ID: 9
+[28-Feb-2026 08:51:51 Europe/Berlin] Delete Core Team - Member found: yes
+[28-Feb-2026 08:51:51 Europe/Berlin] Delete Core Team - Member ID: 9, Name: asdf
+[28-Feb-2026 08:51:51 Europe/Berlin] Delete Core Team - Member deleted successfully
+[28-Feb-2026 08:51:51 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 08:57:31 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 09:00:22 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 09:00:26 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:07:21 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:07:32 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:07:32 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:11:39 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:11:45 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:11:53 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:11:59 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:12:07 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:12:13 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:12:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:12:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:12:35 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:12:44 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:13:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:13:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:13:18 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:13:31 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:13:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:15:13 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:17:09 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:17:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:17:45 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:21:15 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 09:36:31 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:03:06 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:03:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:04:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:17:46 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:17:48 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:17:48 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:18:05 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:18:05 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:18:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:138
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:18:07 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:18:10 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:18:10 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:18:25 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:18:25 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:18:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:138
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:18:34 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:18:34 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:18:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:138
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:19:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:19:37 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:19:37 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:19:52 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:19:52 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:19:52 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:138
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:20:13 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:21:39 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:21:39 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:21:58 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:21:58 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:21:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:138
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 138
+[28-Feb-2026 10:22:16 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:26:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:26:19 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:26:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:26:20 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:26:36 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:26:37 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:26:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:26:41 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:28:54 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:28:55 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:28:55 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:29:15 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:29:15 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 139
+[28-Feb-2026 10:29:15 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:139
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 139
+[28-Feb-2026 10:32:12 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:32:13 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:32:13 Europe/Berlin] PHP Warning:  Constant ADMIN_BASE_URL already defined in C:\xampp\htdocs\myfirstmovie\admin\inc\requires.php on line 33
+[28-Feb-2026 10:32:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:32:29 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 142
+[28-Feb-2026 10:32:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:142
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 142
+[28-Feb-2026 10:32:58 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:32:58 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 142
+[28-Feb-2026 10:32:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:142
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 142
+[28-Feb-2026 10:33:05 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:33:10 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:33:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:33:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:33:50 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:37:02 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:37:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:37:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:37:22 Europe/Berlin] PHP Warning:  Undefined variable $s3Uploader in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 142
+[28-Feb-2026 10:37:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:142
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 142
+[28-Feb-2026 10:43:54 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:43:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:43:55 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:43:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:43:55 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:43:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:43:56 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:43:56 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:43:56 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:43:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:44:19 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:44:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:44:21 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:44:22 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:44:46 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:44:47 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:09 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:09 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:45:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:26 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:29 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:30 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:45:31 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:25 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:26 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:39 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:41 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:46:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:46:59 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:47:04 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:47:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:47:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:143
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 143
+[28-Feb-2026 10:49:01 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:16 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:16 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:25 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:149
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 149
+[28-Feb-2026 10:49:26 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:26 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:149
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 149
+[28-Feb-2026 10:49:26 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:26 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:149
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 149
+[28-Feb-2026 10:49:27 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:28 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:46 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:49:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function uploadFile() on null in C:\xampp\htdocs\myfirstmovie\admin\bts.php:149
+Stack trace:
+#0 C:\xampp\htdocs\myfirstmovie\admin\router.php(239): require()
+#1 {main}
+  thrown in C:\xampp\htdocs\myfirstmovie\admin\bts.php on line 149
+[28-Feb-2026 10:55:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:03 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:09 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:09 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:20 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:55:26 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:56:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:56:53 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:58:06 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:58:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:58:14 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:58:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 10:58:23 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:01:05 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:01:18 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:01:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:01:24 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:02:50 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:02:57 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:22:13 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:22:53 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:26:37 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:27:53 Europe/Berlin] Router base path: /myfirstmovie/admin
+[28-Feb-2026 11:30:11 Europe/Berlin] Router base path: /myfirstmovie/admin

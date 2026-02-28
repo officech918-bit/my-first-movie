@@ -20,6 +20,12 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/classes/S3Uploader.php')) {
+    require_once __DIR__ . '/classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -47,6 +53,28 @@ if ($script) {
     }
 }
 $correct_base_path = $basePath;
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath): string {
+    if (empty($imagePath)) {
+        return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+    }
+    
+    global $s3Uploader;
+    if ($s3Uploader->isS3Enabled()) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        global $correct_base_path;
+        return $correct_base_path . "/" . $imagePath; // Convert to relative path
+    }
+}
 
 $path = rtrim($sitename . '/' . $sub_location, '/') . '/';
 $direct_path = rtrim($_SERVER['DOCUMENT_ROOT'] . '/' . $sub_location, '/') . '/';
@@ -121,23 +149,7 @@ $direct_path = rtrim($_SERVER['DOCUMENT_ROOT'] . '/' . $sub_location, '/') . '/'
               $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
               if(count($result) > 0) {
                 foreach($result as $category) {
-                    // Check if it's an S3 URL or local path
-                    $categoryImg = $category['cat_img'];
-                    if (empty($categoryImg)) {
-                        $img_path = "https://via.placeholder.com/400x300?text=No+Image+Available";
-                    } elseif (strpos($categoryImg, 'http') === 0) {
-                        // S3 URL or full URL
-                        $img_path = $categoryImg;
-                    } else {
-                        // Local path - check if already includes uploads/categories/
-                        if (strpos($categoryImg, 'uploads/categories/') === 0) {
-                            // Already includes the path, just prepend base path
-                            $img_path = $correct_base_path . "/" . $categoryImg;
-                        } else {
-                            // Just the filename, prepend full path
-                            $img_path = $correct_base_path . "/uploads/categories/" . $categoryImg;
-                        }
-                    }
+                    $img_path = getImageUrl($category['cat_img']);
                   ?>
           <div class="row mb-5">
             <div class="col-md-4">

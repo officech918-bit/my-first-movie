@@ -5,9 +5,24 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Autoload dependencies and initialize database connection
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../config/database.php';
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Get admin path dynamically for redirects
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";

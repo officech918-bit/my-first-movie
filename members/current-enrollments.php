@@ -9,10 +9,21 @@ declare(strict_types=1);
 
 require_once 'inc/requires.php';
 
+// Load composer autoloader first (before anything else)
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
+
 // Load environment variables from .env file
 if (class_exists('Dotenv\Dotenv')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
 }
 
 if (!$user->check_session()) {
@@ -69,7 +80,14 @@ if (isset($_POST['enrol_submit'])) {
                 // Sanitize to prevent path traversal
                 $safe_path = str_replace('..', '', $file_to_delete);
                 $full_path = $base_dir . DIRECTORY_SEPARATOR . $safe_path;
+                
                 if (file_exists($full_path) && strpos(realpath($full_path), $base_dir) === 0) {
+                    // Delete from S3 if enabled
+                    if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                        $s3Key = 'enrollments/' . $uid . '/' . $enrollment_data['title'] . '/' . str_replace('\\', '/', $safe_path);
+                        $s3Uploader->deleteFile($s3Key);
+                    }
+                    // Delete from local storage
                     unlink($full_path);
                 }
             }
@@ -85,10 +103,6 @@ if (isset($_POST['enrol_submit'])) {
             mkdir($upload_dir, 0777, true);
         }
 
-        // Check if S3 is enabled via environment variable
-        $useS3 = !empty($_ENV['S3_BASE_URL']);
-        $s3BaseUrl = $useS3 ? rtrim($_ENV['S3_BASE_URL'], '/') : null;
-
         foreach ($_FILES['docs']['name'] as $i => $name) {
             if (!empty($name) && $_FILES['docs']['error'][$i] === UPLOAD_ERR_OK) {
                 $file_name = basename($name);
@@ -99,12 +113,19 @@ if (isset($_POST['enrol_submit'])) {
                     mkdir($ext_dir, 0777, true);
                 }
                 
-                // Always upload locally as backup
-                move_uploaded_file($tmp_name, $ext_dir . "/" . $file_name);
-                
-                // If S3 is enabled, we could implement S3 upload here in the future
-                // For now, files are stored locally and S3 URLs are not used for enrollments
-                // (enrollment files are typically private and don't need public S3 URLs)
+                // Upload to S3 if enabled
+                if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                    $s3Key = 'enrollments/' . $uid . '/' . $dir_name . '/' . $ext . '/' . $file_name;
+                    $uploadResult = $s3Uploader->uploadFile($tmp_name, $s3Key);
+                    
+                    if (!$uploadResult) {
+                        // If S3 upload fails, still upload locally as backup
+                        move_uploaded_file($tmp_name, $ext_dir . "/" . $file_name);
+                    }
+                } else {
+                    // Local upload only
+                    move_uploaded_file($tmp_name, $ext_dir . "/" . $file_name);
+                }
             }
         }
     }
@@ -518,7 +539,17 @@ ul.checkout-bar li.visited:after {
                               if ($file->isFile()) {
                                   $relative_path = str_replace('\\', '/', str_replace(realpath($upload_path), '', realpath($file->getPathname())));
                                   $relative_path = ltrim($relative_path, '/');
-                                  $file_url = str_replace('../', '', $upload_path) . $relative_path;
+                                  
+                                  // Generate proper file URL based on environment
+                                  if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                                      // S3 URL
+                                      $s3Key = 'enrollments/' . $uid . '/' . $enrollment_data['title'] . '/' . $relative_path;
+                                      $file_url = $s3Uploader->getFileUrl($s3Key);
+                                  } else {
+                                      // Local URL
+                                      $file_url = str_replace('../', '', $upload_path) . $relative_path;
+                                  }
+                                  
                                   echo '<div class="col-lg-12" style="margin-bottom: 5px;">';
                                   echo '<input type="checkbox" name="files_to_delete[]" value="' . e($relative_path) . '"> ';
                                   echo '<a href="' . e($file_url) . '" target="_blank">' . e($file->getFilename()) . '</a>';

@@ -1,16 +1,28 @@
 <?php
 
-if (!class_exists('App\Models\News')) {
-    require_once __DIR__ . '/../vendor/autoload.php';
-    require_once __DIR__ . '/../config/database.php';
-    require_once __DIR__ . '/inc/requires.php';
+// Ensure session is started.
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
 }
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
@@ -50,6 +62,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 
 $newsItem = new News();
 $error = [];
@@ -111,17 +143,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newsItem->is_admin_news = 1; // As per original logic
 
         if (isset($fileTmpPath)) {
-            $newFileName = uniqid() . '-' . $fileName;
-            $dest_path = $uploadFileDir . '/' . $newFileName;
-            if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                chmod($dest_path, 0644);
-                // Optionally delete old image
-                if ($is_edit && $newsItem->image && file_exists($uploadFileDir . '/' . $newsItem->image)) {
-                    unlink($uploadFileDir . '/' . $newsItem->image);
-                }
-                $newsItem->image = $newFileName;
-            } else {
-                $error['image'] = 'Failed to move uploaded file.';
+            // Use S3Uploader for environment-based upload
+            try {
+                $s3Path = 'news/' . $fileName;
+                $uploadedUrl = $s3Uploader->uploadFile($fileTmpPath, $s3Path);
+                
+                // Store the URL returned by S3Uploader
+                $newsItem->image = $uploadedUrl;
+                
+            } catch (Exception $e) {
+                $error['image'] = 'Upload failed: ' . $e->getMessage();
             }
         }
 
@@ -227,18 +258,7 @@ else {
                                             <input type="file" name="image" id="image" class="form-control">
                                             <?php if ($is_edit && $newsItem->image): ?>
                                                 <div class="mt-2">
-                                                    <?php
-                                                    // Check if it's an S3 URL or local path
-                                                    $imagePath = $newsItem->image;
-                                                    if (strpos($imagePath, 'http') === 0) {
-                                                        // S3 URL or full URL
-                                                        $imageUrl = $imagePath;
-                                                    } else {
-                                                        // Local path - construct proper URL
-                                                        $imageUrl = $correct_base_path . "/uploads/news/" . $imagePath;
-                                                    }
-                                                    ?>
-                                                    <img src="<?php echo htmlspecialchars($imageUrl); ?>" width="100" class="img-thumbnail" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
+                                                    <img src="<?php echo getImageUrl($newsItem->image, $isProduction); ?>" width="100" class="img-thumbnail" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
                                                     <p class="help-block">Current Image</p>
                                                 </div>
                                             <?php endif; ?>

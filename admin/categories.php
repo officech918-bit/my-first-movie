@@ -1,12 +1,30 @@
 <?php
-// This file is built from the ground up, based on the working dashboard.php template.
+// This file is built from the ground up, based on working dashboard.php template.
 // It handles both creating and editing categories.
 
 // --- 1. BOOTSTRAPPING ---
 // This section ensures all necessary files and sessions are loaded, providing a safety net
 // whether the file is accessed directly or through the router.
+
+// Start the session if it hasn't been started yet
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
 }
 
 // Auth Guard: Block access if user is not an authorized admin or webmaster.
@@ -20,12 +38,6 @@ if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmas
 if (!class_exists('App\\Models\\Category')) {
     require_once __DIR__ . '/../vendor/autoload.php';
     require_once __DIR__ . '/../config/database.php';
-}
-
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
 }
 // Include legacy functions if they are not loaded by middleware.
 if (!function_exists('create_thumbnail')) {
@@ -87,6 +99,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 
 $error = [];
 $success_msg = '';
@@ -150,53 +182,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
                     $newFileName = 'category_' . time() . '.' . $fileExtension;
                     
-                    // Check if S3 is enabled via environment variable
-                    $useS3 = !empty($_ENV['S3_BASE_URL']);
+                    // Use S3Uploader for environment-based upload
+                try {
+                    $s3Path = 'categories/' . $newFileName;
+                    $uploadedUrl = $s3Uploader->uploadFile($fileTmpPath, $s3Path);
                     
-                    if ($useS3) {
-                        // S3 upload logic - store full S3 URL
-                        $s3BaseUrl = rtrim($_ENV['S3_BASE_URL'], '/');
-                        $s3Url = $s3BaseUrl . '/categories/' . $newFileName;
-                        $category->cat_img = $s3Url;
-                        $category->cat_img_thumb = $s3Url;
-                        
-                        // For now, still store locally as backup until S3 upload is implemented
-                        $uploadFileDir = __DIR__ . '/../uploads/categories';
-                        if (!is_dir($uploadFileDir)) {
-                            mkdir($uploadFileDir, 0777, true);
-                        }
-                        $dest_path = $uploadFileDir . '/' . $newFileName;
-                        move_uploaded_file($fileTmpPath, $dest_path);
-                        
-                    } else {
-                        // Local upload logic - simplified for debugging
-                        $uploadFileDir = __DIR__ . '/../uploads/categories';
-                        
-                        // Create directory if it doesn't exist
-                        if (!is_dir($uploadFileDir)) {
-                            mkdir($uploadFileDir, 0777, true);
-                        }
-                        
-                        $dest_path = $uploadFileDir . '/' . $newFileName;
-
-                        // Debug information
-                        error_log("Upload directory: " . $uploadFileDir);
-                        error_log("Destination path: " . $dest_path);
-                        error_log("Temp file path: " . $fileTmpPath);
-                        error_log("Directory exists: " . (is_dir($uploadFileDir) ? 'Yes' : 'No'));
-                        error_log("Directory writable: " . (is_writable($uploadFileDir) ? 'Yes' : 'No'));
-
-                        if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                            // Store relative path for database
-                            $relativePath = 'uploads/categories/' . $newFileName;
-                            $category->cat_img = $relativePath;
-                            $category->cat_img_thumb = $relativePath;
-                        } else {
-                            $error['file'] = 'There was an error moving the uploaded file. Check error logs for details.';
-                        }
-                    }
+                    // Store the URL returned by S3Uploader
+                    $category->cat_img = $uploadedUrl;
+                    $category->cat_img_thumb = $uploadedUrl;
+                    
+                } catch (Exception $e) {
+                    $error['file'] = 'Upload failed: ' . $e->getMessage();
                 }
             }
+        }
         }
 
         // Only save if there are no file upload errors
@@ -357,19 +356,8 @@ if (isset($_GET['created'])) {
                                             <input type="file" name="cat_img">
                                             <?php if ($is_edit && $category->cat_img): ?>
                                                 <p class="help-block">Current image: 
-                                                    <?php 
-                                                    // Check if it's an S3 URL or local path
-                                                    $imagePath = $category->cat_img;
-                                                    if (strpos($imagePath, 'http') === 0) {
-                                                        // S3 URL or full URL
-                                                        $imageUrl = $imagePath;
-                                                    } else {
-                                                        // Local path - construct proper URL
-                                                        $imageUrl = '../' . ltrim($imagePath, '/');
-                                                    }
-                                                    ?>
-                                                    <img src="<?php echo htmlspecialchars($imageUrl); ?>" width="50" alt=""
-                                                         onerror="this.src='<?php echo BASE_URL; ?>assets/admin/layout/img/no-image.png';" />
+                                                    <img src="<?= getImageUrl($category->cat_img, $isProduction) ?>" width="50" alt=""
+                                                         onerror="this.src='assets/admin/layout/img/no-image.png';" />
                                                 </p>
                                             <?php endif; ?>
                                         </div>

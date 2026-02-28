@@ -6,6 +6,22 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
 // 1. Bootstrap the application (loads autoloader, Eloquent, middleware)
 require_once 'inc/middleware_loader.php';
 
@@ -50,6 +66,7 @@ $csrf_token = $_SESSION['csrf_token'];
         <thead>
             <tr>
                 <th>#</th>
+                <th>Image</th>
                 <th>Title</th>
                 <th>Season</th>
                 <th>Day</th>
@@ -63,6 +80,14 @@ $csrf_token = $_SESSION['csrf_token'];
                 <?php foreach ($paginator as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars((string) ($row->short_order ?? '')) ?></td>
+                        <td>
+                            <?php if (!empty($row->image)): ?>
+                                <img src="<?= getImageUrl($row->image, $isProduction) ?>" alt="Image" width="50" 
+                                     onerror="this.src='assets/admin/layout/img/no-image.png';" />
+                            <?php else: ?>
+                                <span class="label label-default">No Image</span>
+                            <?php endif; ?>
+                        </td>
                         <td><?= htmlspecialchars($row->title ?? '') ?></td>
                         <td><?= htmlspecialchars($row->season_title ?? 'N/A') ?></td>
                         <td><?= htmlspecialchars($row->day ?? '') ?></td>

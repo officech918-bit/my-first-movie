@@ -1,10 +1,36 @@
 <?php
-// Start session at the very top
+// This file is now loaded through the router, which handles all bootstrapping.
+// We add these checks here as a fallback for direct access, ensuring the file is self-sufficient.
+
+// Ensure session is started.
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-date_default_timezone_set('Asia/Kolkata');
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
+
+// Auth Guard: Ensure user is logged in and is an admin or webmaster.
+if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmaster', 'admin'])) {
+    header('Location: login.php'); // Or a dedicated access-denied page.
+    exit();
+}
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
@@ -21,52 +47,43 @@ if ($adminIndex !== false) {
     $admin_path = $scheme . '://' . $host . '/admin/'; // fallback
 }
 
-// Run Authentication Middleware (and autoloader)
-require_once 'inc/middleware_loader.php';
+// We can directly use the classes and variables set up by the middleware_loader.
 
-// Include legacy required classes (these will be phased out)
-require_once 'inc/requires.php';
-require_once 'classes/class.admin.php';
-require_once 'classes/class.webmaster.php';
+use App\Models\BehindTheScene;
 
-// Initialize Database
-$database = new MySQLDB();
-
-// The old visitor check is now handled by AuthMiddleware
-$visitor = new visitor($database);
-
-/**
- * Handle User Role and Menu Assignment
- * We use a base $user object that morphs based on type
- */
-$user_type = $_SESSION['user_type'] ?? 'user';
-$menu = 'inc/left-menu-user.php';
-
-switch ($user_type) {
-    case 'webmaster':
-        $user = new webmaster();
-        $menu = 'inc/left-menu-webmaster.php';
-        break;
-    case 'admin':
-        $user = new admin();
-        $menu = 'inc/left-menu-admin.php';
-        break;
-    default:
-        $user = new user();
-        break;
+// Determine the correct menu to include based on the user's role.
+// This session variable is guaranteed to exist by the AuthMiddleware.
+if ($_SESSION['user_type'] == 'webmaster') {
+    $menu = 'inc/left-menu-webmaster.php';
+} else {
+    $menu = 'inc/left-menu-admin.php';
 }
 
-// Path Management
-$sitename = $user->get_sitename();
-$sub_location = $user->get_sub_location();
-$doc_root = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
+// Generate a CSRF token for delete actions.
+// The token is stored in the session to be validated on the deletion request.
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
 
-if (!empty($sub_location)) {
-    $path = $sitename . '/' . $sub_location . '/';
-    $direct_path = $doc_root . '/' . $sub_location . '/';
-} else {
-    $path = $sitename . '/';
-    $direct_path = $doc_root . '/';
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
 }
 
 // Generate a simple CSRF token if one doesn't exist

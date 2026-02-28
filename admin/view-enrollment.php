@@ -1,10 +1,20 @@
 <?php
 require_once 'inc/requires.php';
 
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
 }
 
 // Get admin path dynamically for CSS/JS loading
@@ -34,13 +44,33 @@ if (!$enrollment) {
     exit();
 }
 
-$menu = 'enrollments'; // Set the active menu item for the sidebar
+$menu = 'enrollments'; // Set active menu item for sidebar
 
 // Determine the correct menu to include based on the user's role.
 if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'webmaster') {
     $sidebar_menu = 'inc/left-menu-webmaster.php';
 } else {
     $sidebar_menu = 'inc/left-menu-admin.php';
+}
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
 }
 ?>
 <!DOCTYPE html>

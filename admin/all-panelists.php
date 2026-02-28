@@ -1,18 +1,24 @@
 <?php
 declare(strict_types=1);
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
 }
 
-// Autoload dependencies and initialize database connection
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../config/database.php';
-
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
 }
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
@@ -46,6 +52,33 @@ use App\Models\Panelist;
 if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmaster', 'admin'])) {
     http_response_code(403);
     exit('Forbidden: You do not have permission to access this page.');
+}
+
+// Generate a CSRF token for delete actions.
+// The token is stored in the session to be validated on the deletion request.
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
 }
 
 $panelists = Panelist::orderBy('display_order', 'asc')->get();
@@ -195,18 +228,7 @@ if(isset($_SESSION['user_type'])) {
 										</td>
 										<td>
 											<?php if ($panelist->image): ?>
-												<?php
-												// Check if it's an S3 URL or local path
-												$imagePath = $panelist->image;
-												if (strpos($imagePath, 'http') === 0) {
-													// S3 URL or full URL
-													$imageUrl = $imagePath;
-												} else {
-													// Local path - construct proper URL
-													$imageUrl = $correct_base_path . "/uploads/panelists/" . $imagePath;
-												}
-												?>
-												<img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="<?php echo htmlspecialchars($panelist->name); ?>" style="width: 100px;" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';">
+												<img src="<?php echo getImageUrl($panelist->image, $isProduction); ?>" alt="<?php echo htmlspecialchars($panelist->name); ?>" style="width: 100px;" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';">
 											<?php endif; ?>
 										</td>
 										<td>

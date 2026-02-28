@@ -14,10 +14,53 @@ declare(strict_types=1);
 // Bootstrap the application
 require_once 'inc/requires.php';
 
+// Load composer autoloader first (before anything else)
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
 // Load environment variables from .env file
 if (class_exists('Dotenv\Dotenv')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/');
     $dotenv->load();
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/classes/S3Uploader.php')) {
+    require_once __DIR__ . '/classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
+/**
+ * Get image URL based on environment
+ */
+if (!function_exists('getImageUrl')) {
+    function getImageUrl(string $imagePath): string {
+        if (empty($imagePath)) {
+            return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+        }
+        
+        global $s3Uploader;
+        if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+            // In production, assume S3 URLs are stored
+            return $imagePath;
+        } else {
+            // In local development, convert relative paths to full URLs
+            if (strpos($imagePath, 'http') === 0) {
+                return $imagePath; // Already a full URL
+            }
+            global $correct_base_path;
+            
+            // Handle BTS images - check if it's already a full path or just filename
+            if (strpos($imagePath, 'bts/') === 0) {
+                // Already has bts/ prefix
+                return $correct_base_path . '/uploads/' . $imagePath;
+            } else {
+                // Just a filename, add bts/ prefix
+                return $correct_base_path . '/uploads/bts/' . $imagePath;
+            }
+        }
+    }
 }
 
 if (empty($_SESSION['csrf_token'])) {
@@ -250,15 +293,8 @@ if ($season_id) {
                 </div>
                 <div class="col-md-4"> 
                     <?php 
-                    // Check if it's an S3 URL or local path
-                    $btsScreenshot = $bts['screenshot'];
-                    if (strpos($btsScreenshot, 'http') === 0) {
-                        // S3 URL or full URL
-                        $imageUrl = $btsScreenshot;
-                    } else {
-                        // Local path - construct proper URL using correct base path
-                        $imageUrl = $correct_base_path . "/admin/uploads/bts/" . $btsScreenshot;
-                    }
+                    // Use the getImageUrl function for environment-aware URLs
+                    $imageUrl = getImageUrl($bts['screenshot']);
                     ?>
                     <a href="videos/<?php echo htmlspecialchars($bts['video_url'], ENT_QUOTES, 'UTF-8'); ?>" data-lightbox="iframe" class="">
                         <img src="<?php echo htmlspecialchars($imageUrl); ?>" class="img-responsive" alt="<?php echo htmlspecialchars($bts['title'], ENT_QUOTES, 'UTF-8'); ?>" style="width: 430px; height: 300px; object-fit: cover;"
@@ -278,15 +314,8 @@ if ($season_id) {
                     <div class="portfolio-image">
                       <a href="videos/<?php echo htmlspecialchars($bts['video_url'], ENT_QUOTES, 'UTF-8'); ?>" data-lightbox="iframe">
                         <?php 
-                        // Check if it's an S3 URL or local path
-                        $btsScreenshot = $bts['screenshot'];
-                        if (strpos($btsScreenshot, 'http') === 0) {
-                            // S3 URL or full URL
-                            $imageUrl = $btsScreenshot;
-                        } else {
-                            // Local path - construct proper URL using correct base path
-                            $imageUrl = $correct_base_path . "/admin/uploads/bts/" . $btsScreenshot;
-                        }
+                        // Use the getImageUrl function for environment-aware URLs
+                        $imageUrl = getImageUrl($bts['screenshot']);
                         ?>
                         <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="<?php echo htmlspecialchars($bts['title'], ENT_QUOTES, 'UTF-8'); ?>" style="width: 300px; height: 250px; object-fit: cover;"
                              onerror="this.src='<?php echo $correct_base_path; ?>/images/author/default.jpg';" />
@@ -308,19 +337,12 @@ if ($season_id) {
                   <div class="iportfolio">
                     <div class="portfolio-image"> 
                       <?php 
-                      // Check if it's an S3 URL or local path
+                      // Use the getImageUrl function for environment-aware URLs
                       $galleryImage = $image['image'];
                       $galleryThumb = $image['image_thumb'];
                       
-                      if (strpos($galleryImage, 'http') === 0) {
-                          // S3 URL or full URL
-                          $imageUrl = $galleryImage;
-                          $thumbUrl = $galleryThumb;
-                      } else {
-                          // Local path - construct proper URL using correct base path
-                          $imageUrl = $correct_base_path . "/admin/uploads/bts/" . $galleryImage;
-                          $thumbUrl = $correct_base_path . "/admin/uploads/bts/" . $galleryThumb;
-                      }
+                      $imageUrl = getImageUrl($galleryImage);
+                      $thumbUrl = getImageUrl($galleryThumb);
                       ?>
                       <a href="<?php echo htmlspecialchars($imageUrl); ?>" data-lightbox="image"> 
                         <img src="<?php echo htmlspecialchars($thumbUrl); ?>" style="width: 300px; height: 250px; object-fit: cover; padding: 10px;"

@@ -1,11 +1,28 @@
 <?php
 declare(strict_types=1);
 
+// Load composer autoloader first (before anything else)
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 header('Content-Type: application/json');
+
+// Load environment variables from .env file
+if (class_exists('Dotenv\Dotenv')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
 
 // 1. BOOTSTRAPPING & DEPENDENCIES
 require_once 'inc/requires.php';
@@ -40,19 +57,31 @@ try {
     $image = BehindTheSceneImage::find($image_id);
 
     if ($image) {
-        // Define the path to the image file
-        $image_path = __DIR__ . '/uploads/bts/' . $image->image;
-
-        // Delete the file from the server
-        if (file_exists($image_path)) {
-            unlink($image_path);
+        // Delete the file from storage (S3 or local)
+        if ($image->image) {
+            if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                // Delete from S3
+                $s3Uploader->deleteFile($image->image);
+            } else {
+                // Delete from local storage
+                $image_path = __DIR__ . '/../uploads/bts/' . basename($image->image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
         }
         
         // Also delete the thumbnail if it exists
         if ($image->image_thumb) {
-            $thumb_path = __DIR__ . '/uploads/bts/' . $image->image_thumb;
-            if (file_exists($thumb_path)) {
-                unlink($thumb_path);
+            if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                // Delete from S3
+                $s3Uploader->deleteFile($image->image_thumb);
+            } else {
+                // Delete from local storage
+                $thumb_path = __DIR__ . '/../uploads/bts/' . basename($image->image_thumb);
+                if (file_exists($thumb_path)) {
+                    unlink($thumb_path);
+                }
             }
         }
 
@@ -72,3 +101,4 @@ try {
 // 5. FINAL RESPONSE
 echo json_encode($response);
 exit;
+?>

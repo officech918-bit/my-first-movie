@@ -2,9 +2,22 @@
 use App\Models\WebUser;
 use App\Services\Validator;
 
-// 1. Bootstrap the application
-// Note: The original file included 'inc/requires.php'. We assume 'vendor/autoload.php' and 'config/database.php' replace this.
-require_once __DIR__ . '/../vendor/autoload.php';
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
 require_once __DIR__ . '/../config/database.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -103,37 +116,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user_avatar'])
         $file = $_FILES['avatar'];
         $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
         if (in_array($file['type'], $allowed_types) && $file['size'] <= 2 * 1024 * 1024) {
-            $upload_dir = __DIR__ . '/assets/images/users/';
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0755, true);
-            }
             $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
             $file_name = bin2hex(random_bytes(16)) . '.' . $extension;
             $thumb_name = bin2hex(random_bytes(16)) . '_thumb.' . $extension;
-            $destination = $upload_dir . $file_name;
-
-            if (move_uploaded_file($file['tmp_name'], $destination)) {
-                // Optionally, create a thumbnail
-                // create_thumbnail($destination, $upload_dir . $thumb_name, 200);
-
-                // Delete old avatar if it exists
-                if ($current_user->avatar && file_exists($upload_dir . $current_user->avatar)) {
-                    unlink($upload_dir . $current_user->avatar);
-                }
-                if ($current_user->avatar_thumb && file_exists($upload_dir . $current_user->avatar_thumb)) {
-                    unlink($upload_dir . $current_user->avatar_thumb);
-                }
-
-                $current_user->avatar = $file_name;
-                $current_user->avatar_thumb = $thumb_name; // Or just the file_name if no thumb
-                $current_user->avatar_path = 'admin/assets/images/users/';
+            
+            // Use S3Uploader for environment-based upload
+            try {
+                $s3Path = 'avatars/' . $file_name;
+                $uploadedUrl = $s3Uploader->uploadFile($file['tmp_name'], $s3Path);
+                
+                // Optionally, create a thumbnail and upload it too
+                // For now, just store the main avatar URL
+                $thumbUrl = $uploadedUrl; // Could be enhanced with thumbnail upload later
+                
+                // Delete old avatar if it exists (this would need S3 deletion logic)
+                // For now, we'll just update the database
+                
+                $current_user->avatar = $uploadedUrl;
+                $current_user->avatar_thumb = $thumbUrl;
+                $current_user->avatar_path = ''; // S3 URLs are full paths
+                
                 if ($current_user->save()) {
                     $_SESSION['success'] = 'Avatar updated successfully!';
                 } else {
                     $_SESSION['errors'] = ['database' => ['Failed to update avatar.']];
                 }
-            } else {
-                $_SESSION['errors'] = ['avatar' => ['Failed to move uploaded file.']];
+                
+            } catch (Exception $e) {
+                $_SESSION['errors'] = ['avatar' => ['Upload failed: ' . $e->getMessage()]];
             }
         } else {
             $_SESSION['errors'] = ['avatar' => ['Invalid file type or size (max 2MB).']];
@@ -160,6 +170,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/avatar.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 
 // Handle Personal Info Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']) && $_POST['submit'] === 'personal_info') {
@@ -226,8 +256,19 @@ $first_name = old('first_name', $current_user->first_name);
 $last_name = old('last_name', $current_user->last_name);
 $email = old('email', $current_user->email);
 $contact = old('contact', $current_user->contact);
-$avatar = !empty($current_user->avatar_thumb) ? '../' . $current_user->avatar_path . $current_user->avatar_thumb : 'assets/admin/layout/img/avatar.png';
-$avatar_large = !empty($current_user->avatar) ? '../' . $current_user->avatar_path . $current_user->avatar : 'assets/admin/layout/img/avatar.png';
+
+// Use environment-aware avatar URLs
+if (!empty($current_user->avatar_thumb)) {
+    $avatar = getImageUrl($current_user->avatar_thumb, $isProduction);
+} else {
+    $avatar = 'assets/admin/layout/img/avatar.png';
+}
+
+if (!empty($current_user->avatar)) {
+    $avatar_large = getImageUrl($current_user->avatar, $isProduction);
+} else {
+    $avatar_large = 'assets/admin/layout/img/avatar.png';
+}
 
 	
 	

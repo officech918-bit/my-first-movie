@@ -1,17 +1,23 @@
 <?php
 
-// Ensure the Composer autoloader and Eloquent are loaded.
-if (!class_exists('App\Models\News')) {
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     require_once __DIR__ . '/../vendor/autoload.php';
-    require_once __DIR__ . '/../config/database.php';
-    require_once __DIR__ . '/inc/requires.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
 }
 
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
 }
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
@@ -47,16 +53,38 @@ if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmas
     exit('Forbidden: You do not have permission to access this page.');
 }
 
-// Fetch all news articles, ordering by the most recent
-$newsItems = News::where('is_admin_news', 1)->orderBy('create_date', 'desc')->get();
-
+// Generate a CSRF token for delete actions.
+// The token is stored in the session to be validated on the deletion request.
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
 
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
+
 $success_message = $_SESSION['success_message'] ?? null;
 unset($_SESSION['success_message']);
+
+// Fetch all news articles, ordering by the most recent
+$newsItems = News::where('is_admin_news', 1)->orderBy('create_date', 'desc')->get();
 
 $menu = '';
 if($_SESSION['user_type'] == 'admin'){
@@ -176,25 +204,14 @@ else {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php if (!$newsItems->isEmpty()): ?>
+                                <?php if (!empty($newsItems) && count($newsItems) > 0): ?>
                                     <?php foreach ($newsItems as $item): ?>
                                         <tr>
                                             <td><?= htmlspecialchars($item->id) ?></td>
                                             <td><?= htmlspecialchars($item->headline) ?></td>
                                             <td>
                                             <?php if ($item->image): ?>
-                                                <?php
-                                                // Check if it's an S3 URL or local path
-                                                $imagePath = $item->image;
-                                                if (strpos($imagePath, 'http') === 0) {
-                                                    // S3 URL or full URL
-                                                    $imageUrl = $imagePath;
-                                                } else {
-                                                    // Local path - construct proper URL
-                                                    $imageUrl = $correct_base_path . "/uploads/news/" . $imagePath;
-                                                }
-                                                ?>
-                                                <img src="<?php echo htmlspecialchars($imageUrl); ?>" width="50" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
+                                                <img src="<?php echo getImageUrl($item->image, $isProduction); ?>" width="50" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
                                             <?php endif; ?>
                                         </td>
                                             <td>

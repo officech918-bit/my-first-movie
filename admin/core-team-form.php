@@ -1,6 +1,25 @@
 <?php
 declare(strict_types=1);
 
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
+
 // bootstrap.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -9,12 +28,6 @@ if (session_status() === PHP_SESSION_NONE) {
 if (!class_exists('App\\Models\\CoreTeam')) {
     require_once __DIR__ . '/../vendor/autoload.php';
     require_once __DIR__ . '/../config/database.php';
-}
-
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
 }
 
 // Get admin path dynamically for CSS/JS loading
@@ -66,13 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $image_name = basename($_FILES["image"]["name"]);
-        $target_dir = "../uploads/core_team/";
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0777, true);
+        
+        // Use S3Uploader for environment-based upload
+        try {
+            $s3Path = 'core_team/' . $image_name;
+            $uploadedUrl = $s3Uploader->uploadFile($_FILES["image"]["tmp_name"], $s3Path);
+            
+            // Store the URL returned by S3Uploader
+            $member->image = $uploadedUrl;
+            
+        } catch (Exception $e) {
+            $error = 'Upload failed: ' . $e->getMessage();
         }
-        $target_file = $target_dir . $image_name;
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-        $member->image = $image_name;
     }
 
     $member->save();
@@ -85,6 +103,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 
 $menu = '';
 if($_SESSION['user_type'] == 'admin'){
@@ -177,18 +215,7 @@ else {
                                             <input type="file" name="image" id="image" class="form-control">
                                             <?php if($is_edit && $member->image): ?>
                                             <div class="mt-2">
-                                                <?php
-                                                // Check if it's an S3 URL or local path
-                                                $imagePath = $member->image;
-                                                if (strpos($imagePath, 'http') === 0) {
-                                                    // S3 URL or full URL
-                                                    $imageUrl = $imagePath;
-                                                } else {
-                                                    // Local path - construct proper URL
-                                                    $imageUrl = $correct_base_path . "/uploads/core_team/" . $imagePath;
-                                                }
-                                                ?>
-                                                <img src="<?php echo htmlspecialchars($imageUrl); ?>" width="100" class="img-thumbnail" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
+                                                <img src="<?php echo getImageUrl($member->image, $isProduction); ?>" width="100" class="img-thumbnail" onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
                                                 <p class="help-block">Current Image</p>
                                             </div>
                                             <?php endif; ?>

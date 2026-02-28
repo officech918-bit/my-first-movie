@@ -1,6 +1,12 @@
 <?php
 declare(strict_types=1);
 
+// Load composer autoloader first (before anything else)
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
+
+// Start session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -16,12 +22,18 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
 require_once __DIR__ . '/../classes/imageResizer.php';
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-$host = $_SERVER['HTTP_HOST'];
-$requestUri = $_SERVER['REQUEST_URI'];
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$requestUri = $_SERVER['REQUEST_URI'] ?? '/admin/bts.php';
 
 // Extract the actual path from the current request
 $uriParts = explode('/', trim($requestUri, '/'));
@@ -35,6 +47,15 @@ if ($adminIndex !== false) {
 
 // Define a base URL for all assets
 $base_url = $admin_path;
+
+// Define a base URL for uploads (different from admin assets)
+$upload_base_url = $scheme . '://' . $host . '/myfirstmovie/';
+
+// Auth Guard: Ensure user is logged in and is an admin or webmaster.
+if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmaster', 'admin'])) {
+    header('Location: login.php');
+    exit();
+}
 
 // 2. DEPENDENCIES
 use App\Models\BehindTheScene;
@@ -76,8 +97,43 @@ if (isset($_GET['id'])) {
     }
 }
 
+/**
+ * Get image URL based on environment
+ */
+if (!function_exists('getImageUrl')) {
+    function getImageUrl(string $imagePath): string {
+        if (empty($imagePath)) {
+            return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+        }
+        
+        global $s3Uploader;
+        if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+            // In production, assume S3 URLs are stored
+            return $imagePath;
+        } else {
+            // In local development, convert relative paths to full URLs
+            if (strpos($imagePath, 'http') === 0) {
+                return $imagePath; // Already a full URL
+            }
+            global $upload_base_url;
+            
+            // Handle BTS images - check if it's already a full path or just filename
+            if (strpos($imagePath, 'bts/') === 0) {
+                // Already has bts/ prefix
+                return $upload_base_url . 'uploads/' . $imagePath;
+            } else {
+                // Just a filename, add bts/ prefix
+                return $upload_base_url . 'uploads/bts/' . $imagePath;
+            }
+        }
+    }
+}
+
 // 5. FORM SUBMISSION HANDLING (POST REQUEST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Define upload directory
+    $upload_dir = __DIR__ . '/../uploads/bts/';
+    
     if (!isset($_POST['csrf_token']) || !hash_equals($csrf_token, $_POST['csrf_token'])) {
         $errors[] = "CSRF token mismatch. Please try again.";
     } else {
@@ -112,46 +168,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $bts->last_update = date('Y-m-d H:i:s');
                 $bts->last_update_ip = $_SERVER['REMOTE_ADDR'];
 
-                // Shared upload directory and allowed types
-                $upload_dir = __DIR__ . '/uploads/bts/';
-                if (!is_dir($upload_dir)) {
-                    mkdir($upload_dir, 0777, true);
-                }
-                $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-
                 // Handle the single "Title Image" upload
                 if (isset($_FILES['title_image']) && $_FILES['title_image']['error'] === UPLOAD_ERR_OK) {
                     $tmp_name = $_FILES['title_image']['tmp_name'];
                     $file_type = mime_content_type($tmp_name);
 
-                    if (in_array($file_type, $allowed_types)) {
+                    if (in_array($file_type, ['image/jpeg', 'image/png', 'image/gif'])) {
                         // Delete old image and its thumb if they exist
-                        if ($is_edit) {
-                            if ($bts->screenshot && file_exists($upload_dir . $bts->screenshot)) {
-                                unlink($upload_dir . $bts->screenshot);
-                            }
-                            if ($bts->screenshot_thumb && file_exists($upload_dir . $bts->screenshot_thumb)) {
-                                unlink($upload_dir . $bts->screenshot_thumb);
+                        if ($is_edit && $bts->screenshot) {
+                            if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                                // Delete from S3
+                                $s3Uploader->deleteFile($bts->screenshot);
+                            } else {
+                                // Delete from local storage
+                                $oldPath = $upload_dir . basename($bts->screenshot);
+                                if (file_exists($oldPath)) {
+                                    unlink($oldPath);
+                                }
                             }
                         }
 
+                        // Sanitize filename and get extension
                         $file_extension = pathinfo($_FILES['title_image']['name'], PATHINFO_EXTENSION);
                         $new_filename = uniqid('bts_title_', true) . '.' . $file_extension;
-                        $destination = $upload_dir . $new_filename;
-
-                        if (move_uploaded_file($tmp_name, $destination)) {
-                            $bts->screenshot = $new_filename;
-
-                            // Generate thumbnail
-                            $thumb_filename = 'thumb_' . $new_filename;
-                            $thumb_destination = $upload_dir . $thumb_filename;
-                            if (create_thumbnail($destination, $thumb_destination, 150)) {
-                                $bts->screenshot_thumb = $thumb_filename;
-                            } else {
-                                $errors[] = "Failed to create a thumbnail for the title image.";
+                        
+                        // Use S3Uploader for environment-based upload
+                        if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                            try {
+                                $s3Path = 'bts/' . $new_filename;
+                                $uploadedUrl = $s3Uploader->uploadFile($tmp_name, $s3Path);
+                                $bts->screenshot = $uploadedUrl;
+                                $bts->screenshot_thumb = $uploadedUrl;
+                            } catch (Exception $e) {
+                                $errors[] = 'Upload failed: ' . $e->getMessage();
                             }
                         } else {
-                            $errors[] = "Failed to move the title image.";
+                            // Local upload
+                            $destination = $upload_dir . $new_filename;
+                            if (move_uploaded_file($tmp_name, $destination)) {
+                                $bts->screenshot = $new_filename;
+                                
+                                // Generate thumbnail
+                                $thumb_filename = 'thumb_' . $new_filename;
+                                $thumb_destination = $upload_dir . $thumb_filename;
+                                if (create_thumbnail($destination, $thumb_destination, 150)) {
+                                    $bts->screenshot_thumb = $thumb_filename;
+                                } else {
+                                    $errors[] = "Failed to create a thumbnail for the title image.";
+                                }
+                            } else {
+                                $errors[] = "Failed to move the title image.";
+                            }
                         }
                     } else {
                         $errors[] = "Invalid file type for the title image.";
@@ -169,30 +236,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 $tmp_name = $_FILES['images']['tmp_name'][$key];
                                 $file_type = mime_content_type($tmp_name);
 
-                                if (in_array($file_type, $allowed_types)) {
+                                if (in_array($file_type, ['image/jpeg', 'image/png', 'image/gif'])) {
                                     $file_extension = pathinfo($name, PATHINFO_EXTENSION);
                                     $new_filename = uniqid('bts_gallery_', true) . '.' . $file_extension;
-                                    $destination = $upload_dir . $new_filename;
-
-                                    if (move_uploaded_file($tmp_name, $destination)) {
-                                        // Generate thumbnail for the gallery image
-                                        $thumb_filename = 'thumb_' . $new_filename;
-                                        $thumb_destination = $upload_dir . $thumb_filename;
-                                        
-                                        $bts_image = new BehindTheSceneImage();
-                                        $bts_image->bts = $bts->id;
-                                        $bts_image->image = $new_filename;
-                                        
-                                        if (create_thumbnail($destination, $thumb_destination, 150)) {
-                                            $bts_image->image_thumb = $thumb_filename;
-                                        } else {
-                                            $errors[] = "Failed to create thumbnail for gallery image: " . htmlspecialchars($name);
+                                    
+                                    // Use S3Uploader for environment-based upload
+                                    if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                                        try {
+                                            $s3Path = 'bts/' . $new_filename;
+                                            $uploadedUrl = $s3Uploader->uploadFile($tmp_name, $s3Path);
+                                            
+                                            $bts_image = new BehindTheSceneImage();
+                                            $bts_image->bts = $bts->id;
+                                            $bts_image->image = $uploadedUrl;
+                                            $bts_image->image_thumb = $uploadedUrl;
+                                            $bts_image->created_by = $_SESSION['uid'];
+                                            $bts_image->save();
+                                        } catch (Exception $e) {
+                                            $errors[] = 'Upload failed: ' . $e->getMessage();
                                         }
-                                        
-                                        $bts_image->created_by = $_SESSION['uid'];
-                                        $bts_image->save();
                                     } else {
-                                        $errors[] = "Failed to move gallery image: " . htmlspecialchars($name);
+                                        // Local upload
+                                        $destination = $upload_dir . $new_filename;
+                                        if (move_uploaded_file($tmp_name, $destination)) {
+                                            // Generate thumbnail for gallery image
+                                            $thumb_filename = 'thumb_' . $new_filename;
+                                            $thumb_destination = $upload_dir . $thumb_filename;
+                                            
+                                            $bts_image = new BehindTheSceneImage();
+                                            $bts_image->bts = $bts->id;
+                                            $bts_image->image = $new_filename;
+                                            
+                                            if (create_thumbnail($destination, $thumb_destination, 150)) {
+                                                $bts_image->image_thumb = $thumb_filename;
+                                            }
+                                            
+                                            $bts_image->created_by = $_SESSION['uid'];
+                                            $bts_image->save();
+                                        } else {
+                                            $errors[] = "Failed to move gallery image: " . htmlspecialchars($name);
+                                        }
                                     }
                                 } else {
                                     $errors[] = "Invalid file type for gallery image: " . htmlspecialchars($name);
@@ -332,18 +415,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <span class="help-block">This is the main image displayed next to the title. Required for new entries.</span>
                                             <?php if ($is_edit && $bts->screenshot): ?>
                                                 <div class="thumbnail" style="margin-top: 10px; width: 150px;">
-                                                    <?php 
-                                                    // Check if it's an S3 URL or local path
-                                                    $screenshotPath = $bts->screenshot;
-                                                    if (strpos($screenshotPath, 'http') === 0) {
-                                                        // S3 URL or full URL
-                                                        $imageUrl = $screenshotPath;
-                                                    } else {
-                                                        // Local path - construct proper URL
-                                                        $imageUrl = $base_url . 'uploads/bts/' . $screenshotPath;
-                                                    }
-                                                    ?>
-                                                    <img src="<?php echo htmlspecialchars($imageUrl); ?>"
+                                                    <img src="<?php echo htmlspecialchars(getImageUrl($bts->screenshot)); ?>"
                                                          onerror="this.src='<?php echo $base_url; ?>assets/admin/layout/img/no-image.png';" />
                                                     <div class="caption">
                                                         <p>Current Image</p>
@@ -369,18 +441,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <?php foreach ($bts->images as $image): ?>
                                                     <div class="col-md-3 col-sm-4 col-xs-6" style="margin-bottom: 15px;" id="image-container-<?php echo $image->id; ?>">
                                                         <div class="thumbnail">
-                                                            <?php 
-                                                            // Check if it's an S3 URL or local path
-                                                            $galleryImagePath = $image->image;
-                                                            if (strpos($galleryImagePath, 'http') === 0) {
-                                                                // S3 URL or full URL
-                                                                $imageUrl = $galleryImagePath;
-                                                            } else {
-                                                                // Local path - construct proper URL
-                                                                $imageUrl = $base_url . 'uploads/bts/' . $galleryImagePath;
-                                                            }
-                                                            ?>
-                                                            <img src="<?php echo htmlspecialchars($imageUrl); ?>" style="height: 100px; width: auto; max-width: 100%;"
+                                                            <img src="<?php echo htmlspecialchars(getImageUrl($image->image)); ?>" style="height: 100px; width: auto; max-width: 100%;"
                                                                  onerror="this.src='<?php echo $base_url; ?>assets/admin/layout/img/no-image.png';" />
                                                             <div class="caption text-center">
                                                                 <a href="#" class="btn btn-danger btn-xs delete-image-btn" data-image-id="<?php echo $image->id; ?>" role="button">Delete</a>

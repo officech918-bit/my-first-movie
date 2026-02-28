@@ -18,22 +18,24 @@ if (!function_exists('create_thumbnail')) {
     include('inc/requires.php');
 }
 
-// Load environment variables from .env file
-if (class_exists('Dotenv\Dotenv')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-    $dotenv->load();
-}
-
-// Get the correct base path from current request
-$script = $_SERVER['SCRIPT_NAME'] ?? '';
-$basePath = '';
-if ($script) {
-    $parts = explode('/', trim($script, '/'));
-    if (!empty($parts)) {
-        $basePath = '/' . $parts[0]; // This will give us /myfirstmovie3
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
     }
 }
-$correct_base_path = $basePath;
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";

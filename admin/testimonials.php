@@ -7,6 +7,11 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
+// Load S3Uploader for environment detection
+require_once __DIR__ . '/../classes/S3Uploader.php';
+$s3Uploader = new S3Uploader();
+$isProduction = $s3Uploader->isS3Enabled();
+
 // Get admin path dynamically for CSS/JS loading
 $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
 $host = $_SERVER['HTTP_HOST'];
@@ -92,47 +97,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 };
                 $new_filename = 'testimonial_' . bin2hex(random_bytes(8)) . $ext;
                 
-                // Check if S3 is enabled via environment variable
-                $useS3 = !empty($_ENV['S3_BASE_URL']);
-                
-                if ($useS3) {
-                    // S3 upload logic - store full S3 URL
-                    $s3BaseUrl = rtrim($_ENV['S3_BASE_URL'], '/');
-                    $s3Url = $s3BaseUrl . '/testimonials/' . $new_filename;
-                    $testimonial->logo = $s3Url;
-                    $testimonial->logo_thumb = $s3Url;
+                // Use S3Uploader for environment-based upload
+                try {
+                    $s3Path = 'testimonials/' . $new_filename;
+                    $uploadedUrl = $s3Uploader->uploadFile($_FILES['logo']['tmp_name'], $s3Path);
                     
-                    // For now, still store locally as backup until S3 upload is implemented
-                    $upload_dir = '../uploads/testimonials/';
-                    if (!is_dir($upload_dir)) {
-                        mkdir($upload_dir, 0755, true);
-                    }
-                    $target_file = $upload_dir . $new_filename;
-                    move_uploaded_file($_FILES['logo']['tmp_name'], $target_file);
+                    // Store the URL returned by S3Uploader
+                    $testimonial->logo = $uploadedUrl;
+                    $testimonial->logo_thumb = $uploadedUrl;
                     
-                } else {
-                    // Local upload logic
-                    $upload_dir = '../uploads/testimonials/';
-                    if (!is_dir($upload_dir)) {
-                        mkdir($upload_dir, 0755, true);
-                    }
-                    $target_file = $upload_dir . $new_filename;
-
-                    if (move_uploaded_file($_FILES['logo']['tmp_name'], $target_file)) {
-                        // Delete old logo if it exists
-                        if ($is_edit && !empty($testimonial->logo) && file_exists('../' . $testimonial->logo)) {
-                            unlink('../' . $testimonial->logo);
-                        }
-                        if ($is_edit && !empty($testimonial->logo_thumb) && file_exists('../' . $testimonial->logo_thumb)) {
-                             unlink('../' . $testimonial->logo_thumb);
-                        }
-
-                        // Store relative path for database
-                        $testimonial->logo = 'uploads/testimonials/' . $new_filename;
-                        $testimonial->logo_thumb = 'uploads/testimonials/' . $new_filename;
-                    } else {
-                        $errors[] = 'Failed to upload logo.';
-                    }
+                } catch (Exception $e) {
+                    $errors[] = 'Upload failed: ' . $e->getMessage();
                 }
             }
         }

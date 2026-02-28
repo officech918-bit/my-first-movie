@@ -2,21 +2,34 @@
 // This file is now loaded through the router, which handles all bootstrapping.
 // We add these checks here as a fallback for direct access, ensuring the file is self-sufficient.
 
-// Ensure the session is started.
+// Ensure session is started.
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
 
 // Auth Guard: Ensure user is logged in and is an admin or webmaster.
 if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmaster', 'admin'])) {
     header('Location: login.php'); // Or a dedicated access-denied page.
     exit();
-}
-
-// Ensure the Composer autoloader and Eloquent are loaded.
-if (!class_exists('App\Models\Category')) {
-    require_once __DIR__ . '/../vendor/autoload.php';
-    require_once __DIR__ . '/../config/database.php';
 }
 
 // Get admin path dynamically - same approach as other files
@@ -46,7 +59,12 @@ if ($_SESSION['user_type'] == 'webmaster') {
 
 // Fetch all categories from the database using our Eloquent model.
 // The `orderBy` clause ensures they are displayed in the correct order.
-$categories = Category::orderBy('short_order', 'asc')->get();
+try {
+    $categories = Category::orderBy('short_order', 'asc')->get();
+} catch (Exception $e) {
+    // If there's a database error, show it
+    die('Database error: ' . $e->getMessage());
+}
 
 // Generate a CSRF token for delete actions.
 // The token is stored in the session to be validated on the deletion request.
@@ -54,6 +72,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -162,23 +200,8 @@ $csrf_token = $_SESSION['csrf_token'];
                                             <td><?php echo $category->short_order; ?></td>
                                             <td><?php echo htmlspecialchars($category->title); ?></td>
                                             <td>
-                                                <?php if ($category->cat_img_thumb): ?>
-                                                    <?php 
-                                                    // Check if it's an S3 URL or local path
-                                                    $imagePath = $category->cat_img_thumb;
-                                                    if (strpos($imagePath, 'http') === 0) {
-                                                        // S3 URL or full URL
-                                                        $imageUrl = $imagePath;
-                                                    } else {
-                                                        // Local path - construct proper URL
-                                                        $imageUrl = '../' . ltrim($imagePath, '/');
-                                                    }
-                                                    ?>
-                                                    <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="Thumbnail" width="50" 
-                                                         onerror="this.src='<?php echo $admin_path; ?>assets/admin/layout/img/no-image.png';" />
-                                                <?php else: ?>
-                                                    <span class="label label-default">No Image</span>
-                                                <?php endif; ?>
+                                                <img src="<?= getImageUrl($category->cat_img_thumb, $isProduction) ?>" alt="Thumbnail" width="50" 
+                                                     onerror="this.src='assets/admin/layout/img/no-image.png';" />
                                             </td>
                                             <td>
                                                 <?php if ($category->status == 1): ?>

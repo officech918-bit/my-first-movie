@@ -13,6 +13,13 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
 // Get the correct base path from current request
 $script = $_SERVER['SCRIPT_NAME'] ?? '';
 $basePath = '';

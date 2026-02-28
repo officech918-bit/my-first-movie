@@ -26,7 +26,15 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
-//create objects
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/classes/S3Uploader.php')) {
+    require_once __DIR__ . '/classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
+//get class files
+require_once 'inc/requires.php';
+
 $database = new MySQLDB();
 $user = new visitor();
 
@@ -47,6 +55,36 @@ if ($script) {
     }
 }
 $correct_base_path = $basePath;
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath): string {
+    if (empty($imagePath)) {
+        return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+    }
+    
+    global $s3Uploader;
+    if ($s3Uploader->isS3Enabled()) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        global $correct_base_path;
+        
+        // Handle winner images specifically - they're stored in admin/uploads/winners/
+        if (strpos($imagePath, 'uploads/winners/') === 0) {
+            return $correct_base_path . "/admin/" . $imagePath;
+        }
+        
+        return $correct_base_path . "/" . $imagePath; // Convert to relative path
+    }
+}
+
+//create objects
 
 ?>
 <!DOCTYPE html>
@@ -223,22 +261,12 @@ $correct_base_path = $basePath;
                             $stmt->execute([$season['id']]);
                             $activeCategories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($activeCategories as $cat):
-                                $catImg = !empty($cat['cat_img_thumb']) ? $cat['cat_img_thumb'] : ($cat['cat_img'] ?? '');
+                                $catImg = !empty($cat['cat_img_thumb']) ? getImageUrl($cat['cat_img_thumb']) : '';
                             ?>
                             <div class="col-sm-6 col-md-4 col-lg-3">
                                 <div class="cat-card">
                                     <?php if ($catImg): ?>
-                                        <?php 
-                                        // Check if it's an S3 URL or local path
-                                        if (strpos($catImg, 'http') === 0) {
-                                            // S3 URL or full URL
-                                            $imageUrl = $catImg;
-                                        } else {
-                                            // Local path - construct proper URL using correct base path
-                                            $imageUrl = $correct_base_path . "/admin/" . e($catImg);
-                                        }
-                                        ?>
-                                        <?= lazy_image($imageUrl, e($cat['title'])) ?>
+                                        <?= lazy_image($catImg, e($cat['title'])) ?>
                                     <?php endif; ?>
                                     <div class="p-3">
                                         <h4><?= e($cat['title']) ?></h4>
@@ -261,22 +289,12 @@ $correct_base_path = $basePath;
                                 $stmt->execute([$season['id']]);
                                 $completedCategories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($completedCategories as $cat):
-                                    $catImg = !empty($cat['cat_img_thumb']) ? $cat['cat_img_thumb'] : ($cat['cat_img'] ?? '');
+                                    $catImg = !empty($cat['cat_img_thumb']) ? getImageUrl($cat['cat_img_thumb']) : '';
                                 ?>
                                 <div class="col-sm-6 col-md-4 col-lg-3">
                                     <div class="cat-card">
                                         <?php if ($catImg): ?>
-                                            <?php 
-                                            // Check if it's an S3 URL or local path
-                                            if (strpos($catImg, 'http') === 0) {
-                                                // S3 URL or full URL
-                                                $imageUrl = $catImg;
-                                            } else {
-                                                // Local path - construct proper URL using correct base path
-                                                $imageUrl = $correct_base_path . "/admin/" . e($catImg);
-                                            }
-                                            ?>
-                                            <?= lazy_image($imageUrl, e($cat['title'])) ?>
+                                            <?= lazy_image($catImg, e($cat['title'])) ?>
                                         <?php endif; ?>
                                         <div class="p-3">
                                             <h4><?= e($cat['title']) ?></h4>
@@ -309,17 +327,7 @@ $correct_base_path = $basePath;
                                     <div class="winner-card">
                                         <span class="medal-badge <?= $medalClass ?>"><?= $medalText ?></span>
                                         <?php if (!empty($win['image'])): ?>
-                                            <?php 
-                                            // Check if it's an S3 URL or local path
-                                            if (strpos($win['image'], 'http') === 0) {
-                                                // S3 URL or full URL
-                                                $imageUrl = $win['image'];
-                                            } else {
-                                                // Local path - construct proper URL using correct base path
-                                                $imageUrl = $correct_base_path . "/admin/" . e($win['image']);
-                                            }
-                                            ?>
-                                            <?= lazy_image($imageUrl, e($win['title']), 'winner-img') ?>
+                                            <?= lazy_image(getImageUrl($win['image']), e($win['title']), 'winner-img') ?>
                                         <?php else: ?>
                                             <?= lazy_image('images/author/default.jpg', e($win['title']), 'winner-img') ?>
                                         <?php endif; ?>

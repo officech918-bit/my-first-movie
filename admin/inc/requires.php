@@ -48,26 +48,19 @@ require_once __DIR__ . '/security.php';
     require_once (dirname(__DIR__, 2) . "/classes/validation.class.php");
 	require_once (dirname(__DIR__, 2) . "/classes/imageResizer.php");
 
-function delete_directory($dir) {
-    if (!file_exists($dir)) {
-        return true;
-    }
-
-    if (!is_dir($dir)) {
-        return unlink($dir);
-    }
-
-    foreach (scandir($dir) as $item) {
-        if ($item == '.' || $item == '..') {
-            continue;
-        }
-
-        if (!delete_directory($dir . DIRECTORY_SEPARATOR . $item)) {
-            return false;
-        }
-    }
-
-    return rmdir($dir);
-}
+// function delete_directory($dir) {
+//     if (!file_exists($dir)) {
+//         return true;
+//     }
+//     $files = glob($dir . '*', GLOB_MARK);
+//     foreach ($files as $file) {
+//         if (is_dir($file)) {
+//             delete_directory($file);
+//         } else {
+//             unlink($file);
+//         }
+//     }
+//     rmdir($dir);
+// }
 
 ?>

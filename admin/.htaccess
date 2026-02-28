@@ -79,7 +79,7 @@ RewriteRule ^ router.php [L]
 # Disable PHP errors in production
 php_flag display_errors Off
 php_flag log_errors On
-php_value error_log /var/log/apache2/admin_errors.log
+php_value error_log ../error_log
 
 # Block common attack patterns
 <IfModule mod_rewrite.c>

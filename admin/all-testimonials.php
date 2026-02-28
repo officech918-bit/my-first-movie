@@ -13,7 +13,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
+// Load S3Uploader for environment detection
+require_once __DIR__ . '/../classes/S3Uploader.php';
+$s3Uploader = new S3Uploader();
+$isProduction = $s3Uploader->isS3Enabled();
 
 // Auth Check
 if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmaster', 'admin'])) {
@@ -32,6 +39,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +113,7 @@ $csrf_token = $_SESSION['csrf_token'];
                                     <th>Order</th>
                                     <th>Client Name</th>
                                     <th>Company</th>
+                                    <th>Logo</th>
                                     <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -97,6 +125,12 @@ $csrf_token = $_SESSION['csrf_token'];
                                         <td><?= htmlspecialchars((string)$testimonial->short_order) ?></td>
                                         <td><?= htmlspecialchars($testimonial->client_name) ?></td>
                                         <td><?= htmlspecialchars($testimonial->company) ?></td>
+                                        <td>
+                                            <img src="<?= getImageUrl($testimonial->logo, $isProduction) ?>" 
+                                                 alt="<?= htmlspecialchars($testimonial->client_name) ?>" 
+                                                 style="max-width: 80px; max-height: 60px; object-fit: cover;"
+                                                 onerror="this.src='assets/admin/layout/img/no-image.png'">
+                                        </td>
                                         <td>
                                             <?php if ($testimonial->status == 1): ?>
                                                 <span class="label label-sm label-success">Active</span>

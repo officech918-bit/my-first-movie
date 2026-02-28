@@ -2,15 +2,34 @@
 // This file is now loaded through the router, which handles all bootstrapping.
 // We add these checks here as a fallback for direct access, ensuring the file is self-sufficient.
 
-// Ensure the session is started.
+// Ensure session is started.
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Ensure the Composer autoloader and Eloquent are loaded.
-if (!class_exists('App\Models\Enrollment')) {
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     require_once __DIR__ . '/../vendor/autoload.php';
-    require_once __DIR__ . '/../config/database.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
+// Load database connection using the same approach as dashboard.php
+include('inc/requires.php');
+
+// Auth Guard: Ensure user is logged in and is an admin or webmaster.
+if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['webmaster', 'admin'])) {
+    header('Location: login.php'); // Or a dedicated access-denied page.
+    exit();
 }
 
 // Get admin path dynamically for CSS/JS loading
@@ -58,6 +77,26 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, bool $isProduction): string {
+    if (empty($imagePath)) {
+        return 'assets/admin/layout/img/no-image.png';
+    }
+    
+    if ($isProduction) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        return '../' . $imagePath; // Convert to relative path
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">

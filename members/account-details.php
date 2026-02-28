@@ -13,6 +13,23 @@
 
 require_once __DIR__ . '/inc/requires.php';
 
+// Load composer autoloader first (before anything else)
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
+
+// Load environment variables from .env file
+if (class_exists('Dotenv\Dotenv')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
 if (!$user->check_session() || !$user->isActive()) {
     header('Location: index.php');
     exit();
@@ -147,52 +164,111 @@ if (isset($_POST['submit_user_data'])) {
                 $avatar = $pic_id . '_raw.' . $extension;
                 $avatar_thumb = $pic_id . '_100.' . $extension;
 
-                $uploadPath = __DIR__ . '/images/profile/';
-                $avatar_path = 'members/images/profile/';
+                // Set upload paths based on environment
+                if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                    // S3 upload
+                    $avatar_path = 'members/images/profile/';
+                    $uploadPath = null; // Not used for S3
+                } else {
+                    // Local upload
+                    $uploadPath = __DIR__ . '/images/profile/';
+                    $avatar_path = 'members/images/profile/';
 
-                if (!file_exists($uploadPath)) {
-                    mkdir($uploadPath, 0777, true);
+                    if (!file_exists($uploadPath)) {
+                        mkdir($uploadPath, 0777, true);
+                    }
                 }
 
                 // Delete old images if they exist
                 $old_avatar = $user->get('avatar');
                 if (!empty($old_avatar)) {
-                    $old_avatar_raw_path = $uploadPath . $old_avatar;
-                    $old_avatar_thumb_path = $uploadPath . str_replace('_raw.', '_100.', (string)$old_avatar);
-                    if (file_exists($old_avatar_raw_path)) {
-                        unlink($old_avatar_raw_path);
-                    }
-                    if (file_exists($old_avatar_thumb_path)) {
-                        unlink($old_avatar_thumb_path);
+                    if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                        // Delete from S3
+                        $s3Uploader->deleteFile($avatar_path . $old_avatar);
+                        $s3Uploader->deleteFile($avatar_path . str_replace('_raw.', '_100.', (string)$old_avatar));
+                    } else {
+                        // Delete from local storage
+                        $old_avatar_raw_path = $uploadPath . $old_avatar;
+                        $old_avatar_thumb_path = $uploadPath . str_replace('_raw.', '_100.', (string)$old_avatar);
+                        if (file_exists($old_avatar_raw_path)) {
+                            unlink($old_avatar_raw_path);
+                        }
+                        if (file_exists($old_avatar_thumb_path)) {
+                            unlink($old_avatar_thumb_path);
+                        }
                     }
                 }
 
-                $destination = $uploadPath . $avatar;
-                if (move_uploaded_file($file_tmp, $destination)) {
-                    list($width) = getimagesize($destination);
-
-                    if ($width > 100) {
-                        $thumb_width = 100;
-                        // Assuming create_thumbnail is defined in requires.php or another included file
-                        if (function_exists('create_thumbnail')) {
-                            $isThumCreated = create_thumbnail($destination, $uploadPath . $avatar_thumb, $thumb_width);
-                            if (!$isThumCreated) {
+                // Upload the file
+                if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+                    // Upload to S3
+                    $s3Key = $avatar_path . $avatar;
+                    $uploadResult = $s3Uploader->uploadFile($file_tmp, $s3Key);
+                    
+                    if ($uploadResult) {
+                        // Create thumbnail and upload to S3
+                        $tempThumbPath = sys_get_temp_dir() . '/' . $avatar_thumb;
+                        
+                        // Create thumbnail locally first
+                        list($width) = getimagesize($file_tmp);
+                        if ($width > 100) {
+                            $thumb_width = 100;
+                            if (function_exists('create_thumbnail')) {
+                                $isThumCreated = create_thumbnail($file_tmp, $tempThumbPath, $thumb_width);
+                                if ($isThumCreated) {
+                                    // Upload thumbnail to S3
+                                    $thumbS3Key = $avatar_path . $avatar_thumb;
+                                    $s3Uploader->uploadFile($tempThumbPath, $thumbS3Key);
+                                    unlink($tempThumbPath); // Clean up temp file
+                                } else {
+                                    $is_error = true;
+                                    $error['avatar'] = "Error occurred while creating thumb image, please try again later.";
+                                    // Delete the uploaded main image
+                                    $s3Uploader->deleteFile($s3Key);
+                                }
+                            } else {
                                 $is_error = true;
-                                $error['avatar'] = "Error occurred while creating thumb image, please try again later.";
-                                unlink($destination); // Clean up uploaded file
+                                $error['avatar'] = "Thumbnail creation function not available.";
+                                $s3Uploader->deleteFile($s3Key);
                             }
                         } else {
-                            $is_error = true;
-                            $error['avatar'] = "Thumbnail generation function is missing.";
-                            unlink($destination);
+                            // If the image is smaller than the thumb width, just upload it as thumbnail
+                            $thumbS3Key = $avatar_path . $avatar_thumb;
+                            $s3Uploader->uploadFile($file_tmp, $thumbS3Key);
                         }
                     } else {
-                        // If the image is smaller than the thumb width, just copy it
-                        copy($destination, $uploadPath . $avatar_thumb);
+                        $is_error = true;
+                        $error['avatar'] = "Error occurred while uploading image to cloud storage!";
                     }
                 } else {
-                    $is_error = true;
-                    $error['avatar'] = "Error occurred while uploading image!";
+                    // Local upload
+                    $destination = $uploadPath . $avatar;
+                    if (move_uploaded_file($file_tmp, $destination)) {
+                        list($width) = getimagesize($destination);
+
+                        if ($width > 100) {
+                            $thumb_width = 100;
+                            // Assuming create_thumbnail is defined in requires.php or another included file
+                            if (function_exists('create_thumbnail')) {
+                                $isThumCreated = create_thumbnail($destination, $uploadPath . $avatar_thumb, $thumb_width);
+                                if (!$isThumCreated) {
+                                    $is_error = true;
+                                    $error['avatar'] = "Error occurred while creating thumb image, please try again later.";
+                                    unlink($destination); // Clean up uploaded file
+                                }
+                            } else {
+                                $is_error = true;
+                                $error['avatar'] = "Thumbnail creation function not available.";
+                                unlink($destination);
+                            }
+                        } else {
+                            // If the image is smaller than the thumb width, just copy it
+                            copy($destination, $uploadPath . $avatar_thumb);
+                        }
+                    } else {
+                        $is_error = true;
+                        $error['avatar'] = "Error occurred while uploading image!";
+                    }
                 }
             }
         }
@@ -210,6 +286,13 @@ if (isset($_POST['submit_user_data'])) {
 
             if ($stmt->execute()) {
                 $echo_message = "Account Details were successfully updated.";
+                
+                // Refresh user session data to reflect the updated avatar
+                if ($is_image) {
+                    // Update session with new avatar information
+                    $_SESSION['avatar'] = $avatar;
+                    $_SESSION['avatar_path'] = $avatar_path;
+                }
             } else {
                 $is_error = true;
                 $echo_message = "Error while updating Database: " . $stmt->errorInfo()[2];

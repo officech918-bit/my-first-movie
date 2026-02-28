@@ -1,7 +1,42 @@
 <div class="profile-userpic">
 <?php 
-  $avatar = $user->get('avatar');
-  $avatar_path = $user->get('avatar_path');
+  // Load S3Uploader for environment detection
+  if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+      require_once __DIR__ . '/../classes/S3Uploader.php';
+      $s3Uploader = new S3Uploader();
+  }
+
+  /**
+   * Get image URL based on environment
+   */
+  function getImageUrl(string $imagePath, string $uploadPath = ''): string {
+      if (empty($imagePath)) {
+          return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+      }
+      
+      global $s3Uploader;
+      if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+          // In production, assume S3 URLs are stored
+          return $imagePath;
+      } else {
+          // In local development, convert relative paths to full URLs
+          if (strpos($imagePath, 'http') === 0) {
+              return $imagePath; // Already a full URL
+          }
+          global $correct_base_path;
+          
+          // Handle different upload paths
+          if (!empty($uploadPath) && strpos($imagePath, $uploadPath) !== 0) {
+              return $correct_base_path . "/" . $uploadPath . "/" . $imagePath;
+          }
+          
+          return $correct_base_path . "/" . $imagePath; // Convert to relative path
+      }
+  }
+
+  // Get fresh avatar data from session (updated after account details update)
+  $avatar = $_SESSION['avatar'] ?? $user->get('avatar');
+  $avatar_path = $_SESSION['avatar_path'] ?? $user->get('avatar_path');
   
   // Get the correct base path from current request
   $script = $_SERVER['SCRIPT_NAME'] ?? '';
@@ -15,14 +50,8 @@
   $correct_base_path = $basePath;
   
   if($avatar != '') {
-      // Check if it's an S3 URL or local path
-      if (strpos($avatar, 'http') === 0) {
-          // S3 URL or full URL
-          $profile_pic = $avatar;
-      } else {
-          // Local path - construct proper URL using correct base path
-          $profile_pic = $correct_base_path . "/" . $avatar_path . "/" . $avatar;
-      }
+      // Use the getImageUrl function for environment-aware URLs
+      $profile_pic = getImageUrl($avatar, $avatar_path);
       echo '<img alt="" class="img-responsive" src="'.$profile_pic.'" />';
   } else {
       // Use default profile picture with correct base path

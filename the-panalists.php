@@ -15,10 +15,49 @@ declare(strict_types=1);
 
 require_once 'inc/requires.php';
 
+// Load composer autoloader first (before anything else)
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
 // Load environment variables from .env file
 if (class_exists('Dotenv\Dotenv')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/');
     $dotenv->load();
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/classes/S3Uploader.php')) {
+    require_once __DIR__ . '/classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath, string $uploadPath = ''): string {
+    if (empty($imagePath)) {
+        return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+    }
+    
+    global $s3Uploader;
+    if ($s3Uploader && $s3Uploader->isS3Enabled()) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        global $correct_base_path;
+        
+        // Handle different upload paths (panelists, etc.)
+        if (!empty($uploadPath) && strpos($imagePath, $uploadPath) !== 0) {
+            return $correct_base_path . "/uploads/" . $uploadPath . "/" . $imagePath;
+        }
+        
+        return $correct_base_path . "/" . $imagePath; // Convert to relative path
+    }
 }
 
 // Get the correct base path from current request
@@ -124,15 +163,8 @@ if ($user->check_session()) {
 								<div class="team-image">
 									<?php
 										if (!empty($panelist['image'])) {
-											// Check if it's an S3 URL or local path
-											$imagePath = $panelist['image'];
-											if (strpos($imagePath, 'http') === 0) {
-												// S3 URL or full URL
-												$imageUrl = $imagePath;
-											} else {
-												// Local path - construct proper URL using correct base path
-												$imageUrl = $correct_base_path . "/uploads/panelists/" . $imagePath;
-											}
+											// Use the getImageUrl function for environment-aware URLs
+											$imageUrl = getImageUrl($panelist['image'], 'panelists');
 											echo lazy_image($imageUrl, htmlspecialchars($panelist['name'], ENT_QUOTES, 'UTF-8'));
 										} else {
 											// Use default image

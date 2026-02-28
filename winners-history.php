@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 /**
  * Displays the history of winners for all seasons.
  *
@@ -15,6 +12,10 @@
 
 declare(strict_types=1);
 
+session_start();
+date_default_timezone_set('Asia/Kolkata');
+
+//get class files
 require_once 'inc/requires.php';
 
 // Load environment variables from .env file
@@ -23,7 +24,13 @@ if (class_exists('Dotenv\Dotenv')) {
     $dotenv->load();
 }
 
-$database = new MYSQLDB();
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/classes/S3Uploader.php')) {
+    require_once __DIR__ . '/classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+}
+
+$database = new MySQLDB();
 $user = new visitor();
 
 if ($user->check_session()) {
@@ -32,7 +39,6 @@ if ($user->check_session()) {
 
 $sitename = $user->get_sitename();
 $sub_location = $user->get_sub_location();
-$path = $sitename . ($sub_location ? '/' . $sub_location : '') . '/';
 
 // Get the correct base path from current request
 $script = $_SERVER['SCRIPT_NAME'] ?? '';
@@ -44,6 +50,34 @@ if ($script) {
     }
 }
 $correct_base_path = $basePath;
+
+/**
+ * Get image URL based on environment
+ */
+function getImageUrl(string $imagePath): string {
+    if (empty($imagePath)) {
+        return 'https://via.placeholder.com/400x300?text=No+Image+Available';
+    }
+    
+    global $s3Uploader;
+    if ($s3Uploader->isS3Enabled()) {
+        // In production, assume S3 URLs are stored
+        return $imagePath;
+    } else {
+        // In local development, convert relative paths to full URLs
+        if (strpos($imagePath, 'http') === 0) {
+            return $imagePath; // Already a full URL
+        }
+        global $correct_base_path;
+        
+        // Handle winner images specifically - they're stored in admin/uploads/winners/
+        if (strpos($imagePath, 'uploads/winners/') === 0) {
+            return $correct_base_path . "/admin/" . $imagePath;
+        }
+        
+        return $correct_base_path . "/" . $imagePath; // Convert to relative path
+    }
+}
 
 // Optimized data fetching to avoid N+1 queries
 $stmt = $database->db->prepare("SELECT id, title, display_note, status FROM seasons ORDER BY short_order ASC");
@@ -151,11 +185,7 @@ $completedSeasons = array_filter($allSeasons, function($s) use ($seasonsWithWinn
                       <div class="col-md-12"><em>No winners yet in this category.</em></div>
                     <?php else: ?>
                       <?php foreach ($winnersInCat as $win): ?>
-                        <?php $img = !empty($win['image']) ? 
-                        (strpos($win['image'], 'http') === 0 ? 
-                            $win['image'] : 
-                            $correct_base_path . "/admin/" . e($win['image'])
-                        ) : ''; ?>
+                        <?php $img = !empty($win['image']) ? getImageUrl($win['image']) : ''; ?>
                         <div class="col-md-4" style="margin-bottom:15px;">
                           <div class="text-center">
                             <?php if (!empty($img)): ?>

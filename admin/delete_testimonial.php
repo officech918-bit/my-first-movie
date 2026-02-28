@@ -4,7 +4,22 @@ declare(strict_types=1);
 
 use App\Models\Testimonial;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+// Load environment variables
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+}
+
+// Load S3Uploader for environment detection
+if (file_exists(__DIR__ . '/../classes/S3Uploader.php')) {
+    require_once __DIR__ . '/../classes/S3Uploader.php';
+    $s3Uploader = new S3Uploader();
+    $isProduction = $s3Uploader->isS3Enabled();
+}
+
 require_once __DIR__ . '/../config/database.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -46,16 +61,41 @@ if (!$testimonial) {
     exit();
 }
 
-// Define the upload directory
-$uploadDir = dirname(__DIR__) . '/uploads/testimonials/';
-
-// Delete the logo and thumbnail if they exist
-if ($testimonial->logo && file_exists($uploadDir . $testimonial->logo)) {
-    unlink($uploadDir . $testimonial->logo);
+// Delete S3/local files if they exist
+if ($testimonial->logo) {
+    try {
+        if ($isProduction) {
+            // In production, delete from S3
+            $s3Uploader->deleteFile($testimonial->logo);
+        } else {
+            // In local development, delete from local filesystem
+            $uploadDir = dirname(__DIR__) . '/uploads/testimonials/';
+            if (file_exists($uploadDir . $testimonial->logo)) {
+                unlink($uploadDir . $testimonial->logo);
+            }
+        }
+    } catch (Exception $e) {
+        // Log error but continue with deletion
+        error_log('Failed to delete logo: ' . $e->getMessage());
+    }
 }
 
-if ($testimonial->logo_thumb && file_exists($uploadDir . $testimonial->logo_thumb)) {
-    unlink($uploadDir . $testimonial->logo_thumb);
+if ($testimonial->logo_thumb) {
+    try {
+        if ($isProduction) {
+            // In production, delete from S3
+            $s3Uploader->deleteFile($testimonial->logo_thumb);
+        } else {
+            // In local development, delete from local filesystem
+            $uploadDir = dirname(__DIR__) . '/uploads/testimonials/';
+            if (file_exists($uploadDir . $testimonial->logo_thumb)) {
+                unlink($uploadDir . $testimonial->logo_thumb);
+            }
+        }
+    } catch (Exception $e) {
+        // Log error but continue with deletion
+        error_log('Failed to delete logo thumb: ' . $e->getMessage());
+    }
 }
 
 // Delete the testimonial from the database

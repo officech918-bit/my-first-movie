@@ -36,13 +36,16 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\String\\' => 25,
+            'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Console\\' => 26,
         ),
         'P' =>
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
             'PhpOption\\' => 10,
@@ -117,6 +120,10 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
         ),
+        'Symfony\\Contracts\\EventDispatcher\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
+        ),
         'Symfony\\Component\\Translation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
@@ -125,6 +132,10 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         array (
             0 => __DIR__ . '/..' . '/symfony/string',
         ),
+        'Symfony\\Component\\EventDispatcher\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
         'Symfony\\Component\\Console\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
@@ -132,6 +143,10 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         'Psr\\SimpleCache\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'Psr\\EventDispatcher\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
         ),
         'Psr\\Container\\' =>
         array (
@@ -201,6 +216,27 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'G' =>
+        array (
+            'Guzzle\\Tests' =>
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
+            ),
+            'Guzzle' =>
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
+            ),
+        ),
+        'A' =>
+        array (
+            'Aws' =>
+            array (
+                0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -217,6 +253,7 @@ class ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit6d387ae92f5ce71a4c8346acfdcd1e34::$classMap;
 
         }, null, ClassLoader::class);
